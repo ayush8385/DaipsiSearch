@@ -168,6 +168,7 @@
 <!--                android:layout_width="match_parent"-->
 <!--                android:layout_height="wrap_content"-->
 <!--                tools:listitem="@layout/item_course"/>-->
+<!--      todo Make it horizental scrolable and fix spaces      -->
             <LinearLayout
                 android:orientation="vertical"
                 android:layout_width="300sp"
