@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:orientation="vertical"
+    android:layout_width="300sp"
+    android:layout_height="wrap_content"
+    android:padding="10sp">
+    <ImageView
+        android:src="@color/white"
+        android:layout_width="220sp"
+        android:layout_height="100sp"/>
+
+    <TextView
+        android:layout_marginTop="5sp"
+        android:layout_marginBottom="5sp"
+        android:textSize="16sp"
+        android:textStyle="bold"
+        android:text="Course Name"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"/>
+
+    <TextView
+        android:layout_marginTop="5sp"
+        android:layout_marginBottom="5sp"
+        android:text="course teaher"
+        android:textSize="12sp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"/>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+        <ImageView
+            android:src="@drawable/ic_star_fill_full"
+            android:layout_width="20sp"
+            android:layout_height="20sp"
+            app:tint="@color/star_tint" />
+        <ImageView
+            android:src="@drawable/ic_star_fill_full"
+            android:layout_width="20sp"
+            android:layout_height="20sp"
+            app:tint="@color/star_tint" />
+        <ImageView
+            android:src="@drawable/ic_star_fill_full"
+            android:layout_width="20sp"
+            android:layout_height="20sp"
+            app:tint="@color/star_tint" />
+        <ImageView
+            android:src="@drawable/ic_star_fill_full"
+            android:layout_width="20sp"
+            android:layout_height="20sp"
+            app:tint="@color/star_tint" />
+        <ImageView
+            android:src="@drawable/ic_star_fill_half"
+            android:layout_width="20sp"
+            android:layout_height="20sp"
+            app:tint="@color/star_tint" />
+    </LinearLayout>
+
+</LinearLayout>

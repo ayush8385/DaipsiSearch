@@ -33,9 +33,9 @@
                 android:layout_weight="1"
                 android:gravity="center"
                 android:text="Welcome to Daipsi"
+                android:textColor="@color/white"
                 android:textSize="18sp"
-                android:textStyle="bold"
-                android:textColor="@color/white"/>
+                android:textStyle="bold" />
 
             <ImageView
                 android:layout_width="30sp"
@@ -44,9 +44,10 @@
         </LinearLayout>
 
         <LinearLayout
+            android:id="@+id/search_layout"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_centerInParent="true"
+            android:layout_below="@+id/header_title"
             android:gravity="center"
             android:orientation="vertical">
 
@@ -115,14 +116,14 @@
                 android:layout_height="wrap_content"
                 android:background="@drawable/custam_search_bg">
 
-               <EditText
-                   android:layout_width="match_parent"
-                   android:layout_height="wrap_content"
-                   android:hint="Get Your Answer Quickly"
-                   android:textSize="13sp"
-                   android:padding="15dp"
-                   android:textColorHint="@android:color/darker_gray"
-                   android:background="@drawable/custam_search_bg_new"/>
+                <EditText
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:background="@drawable/custam_search_bg_new"
+                    android:hint="Get Your Answer Quickly"
+                    android:padding="15dp"
+                    android:textColorHint="@android:color/darker_gray"
+                    android:textSize="13sp" />
 
                 <LinearLayout
                     android:layout_width="wrap_content"
@@ -132,8 +133,8 @@
                     android:layout_marginEnd="10dp"
                     android:background="@drawable/custam_btn"
                     android:onClick="gotoNext"
-                    android:padding="10sp"
-                    android:orientation="vertical">
+                    android:orientation="vertical"
+                    android:padding="10sp">
 
                     <TextView
                         android:layout_width="wrap_content"
@@ -158,6 +159,140 @@
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_below="@+id/search_layout"
+            android:layout_marginTop="15sp"
+            android:orientation="horizontal">
+
+<!--            <androidx.recyclerview.widget.RecyclerView-->
+<!--                android:id="@+id/top_courses_search_bar"-->
+<!--                android:layout_width="match_parent"-->
+<!--                android:layout_height="wrap_content"-->
+<!--                tools:listitem="@layout/item_course"/>-->
+            <LinearLayout
+                android:orientation="vertical"
+                android:layout_width="300sp"
+                android:layout_height="wrap_content"
+                android:padding="10sp">
+
+                <ImageView
+                    android:layout_width="220sp"
+                    android:layout_height="100sp"
+                    android:src="@color/white" />
+
+                <TextView
+                    android:layout_marginTop="5sp"
+                    android:layout_marginBottom="5sp"
+                    android:textSize="16sp"
+                    android:textStyle="bold"
+                    android:text="Course Name"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"/>
+
+                <TextView
+                    android:layout_marginTop="5sp"
+                    android:layout_marginBottom="5sp"
+                    android:text="course teaher"
+                    android:textSize="12sp"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"/>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal">
+                    <ImageView
+                        android:src="@drawable/ic_star_fill_full"
+                        android:layout_width="20sp"
+                        android:layout_height="20sp"
+                        app:tint="@color/star_tint" />
+                    <ImageView
+                        android:src="@drawable/ic_star_fill_full"
+                        android:layout_width="20sp"
+                        android:layout_height="20sp"
+                        app:tint="@color/star_tint" />
+                    <ImageView
+                        android:src="@drawable/ic_star_fill_full"
+                        android:layout_width="20sp"
+                        android:layout_height="20sp"
+                        app:tint="@color/star_tint" />
+                    <ImageView
+                        android:src="@drawable/ic_star_fill_full"
+                        android:layout_width="20sp"
+                        android:layout_height="20sp"
+                        app:tint="@color/star_tint" />
+                    <ImageView
+                        android:src="@drawable/ic_star_fill_half"
+                        android:layout_width="20sp"
+                        android:layout_height="20sp"
+                        app:tint="@color/star_tint" />
+                </LinearLayout>
+
+            </LinearLayout>
+            <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+                xmlns:app="http://schemas.android.com/apk/res-auto"
+                android:orientation="vertical"
+                android:layout_width="300sp"
+                android:layout_height="wrap_content"
+                android:padding="10sp">
+                <ImageView
+                    android:src="@color/white"
+                    android:layout_width="220sp"
+                    android:layout_height="100sp"/>
+
+                <TextView
+                    android:layout_marginTop="5sp"
+                    android:layout_marginBottom="5sp"
+                    android:textSize="16sp"
+                    android:textStyle="bold"
+                    android:text="Course Name"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"/>
+
+                <TextView
+                    android:layout_marginTop="5sp"
+                    android:layout_marginBottom="5sp"
+                    android:text="course teaher"
+                    android:textSize="12sp"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"/>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal">
+                    <ImageView
+                        android:src="@drawable/ic_star_fill_full"
+                        android:layout_width="20sp"
+                        android:layout_height="20sp"
+                        app:tint="@color/star_tint" />
+                    <ImageView
+                        android:src="@drawable/ic_star_fill_full"
+                        android:layout_width="20sp"
+                        android:layout_height="20sp"
+                        app:tint="@color/star_tint" />
+                    <ImageView
+                        android:src="@drawable/ic_star_fill_full"
+                        android:layout_width="20sp"
+                        android:layout_height="20sp"
+                        app:tint="@color/star_tint" />
+                    <ImageView
+                        android:src="@drawable/ic_star_fill_full"
+                        android:layout_width="20sp"
+                        android:layout_height="20sp"
+                        app:tint="@color/star_tint" />
+                    <ImageView
+                        android:src="@drawable/ic_star_fill_half"
+                        android:layout_width="20sp"
+                        android:layout_height="20sp"
+                        app:tint="@color/star_tint" />
+                </LinearLayout>
+
+            </LinearLayout>
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
             android:layout_alignParentBottom="true"
             android:gravity="center">
 
@@ -165,8 +300,8 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="@string/powered_by"
-                android:textSize="10sp"
-                android:textColor="@color/white"/>
+                android:textColor="@color/white"
+                android:textSize="10sp" />
         </LinearLayout>
 
     </RelativeLayout>

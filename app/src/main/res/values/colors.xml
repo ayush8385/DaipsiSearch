@@ -10,4 +10,5 @@
 
     <color name="bg">#D4B5F3</color>
     <color name="course_bg_color">#CCADEB</color>
+    <color name="star_tint">#FDCC0D</color>
 </resources>
