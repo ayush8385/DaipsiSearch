@@ -54,8 +54,8 @@
             <ImageView
                 android:layout_width="wrap_content"
                 android:layout_height="200dp"
-                android:src="@drawable/img_center"
-                android:scaleType="fitCenter"/>
+                android:scaleType="fitCenter"
+                android:src="@drawable/img_center" />
 
 
             <RadioGroup
@@ -112,31 +112,28 @@
 
             <RelativeLayout
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content">
+                android:layout_height="wrap_content"
+                android:background="@drawable/custam_search_bg">
 
-                <com.google.android.material.textfield.TextInputLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:background="@drawable/custam_search_bg">
-
-                    <com.google.android.material.textfield.TextInputEditText
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:background="@drawable/custam_search_bg_new"
-                        android:hint="Get Your Answer Quickly" />
-                </com.google.android.material.textfield.TextInputLayout>
+               <EditText
+                   android:layout_width="match_parent"
+                   android:layout_height="wrap_content"
+                   android:hint="Get Your Answer Quickly"
+                   android:textSize="13sp"
+                   android:padding="15dp"
+                   android:textColorHint="@android:color/darker_gray"
+                   android:background="@drawable/custam_search_bg_new"/>
 
                 <LinearLayout
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_alignParentEnd="true"
                     android:layout_centerInParent="true"
-                    android:layout_marginTop="10sp"
-                    android:layout_marginEnd="15dp"
+                    android:layout_marginEnd="10dp"
                     android:background="@drawable/custam_btn"
                     android:onClick="gotoNext"
-                    android:orientation="vertical"
-                    android:padding="10dp">
+                    android:padding="10sp"
+                    android:orientation="vertical">
 
                     <TextView
                         android:layout_width="wrap_content"
