@@ -32,7 +32,24 @@ class searchedItemActivity : AppCompatActivity() {
         progressBar=findViewById(R.id.progressbar)
         progressBar.visibility= View.VISIBLE
 
-        val url="https://daipsi.com/api/find-qna.php"
+        val sub=intent.getStringExtra("subject")
+        var str=""
+
+        supportActionBar!!.title=sub
+        if(sub=="Engineering"){
+            str="engineering.php"
+        }
+        else if(sub=="Medical"){
+            str="medical.php"
+        }
+        else if(sub=="Commerce"){
+            str="commerce.php"
+        }
+        else{
+            str="govtexams.php"
+        }
+
+        val url="https://daipsi.com/api/"+str
         val queue= Volley.newRequestQueue(this)
 
         recyclerView=findViewById(R.id.recyclermain)
