@@ -61,9 +61,10 @@
 
             <RadioGroup
                 android:id="@+id/groupradio"
+                android:layout_marginTop="14dp"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:orientation="horizontal">
+                android:orientation="vertical">
 
                 <RadioButton
                     android:id="@+id/radia_eng"
@@ -72,7 +73,7 @@
                     android:buttonTint="@color/white"
                     android:text="Engineering"
                     android:textColor="@color/white"
-                    android:textSize="9sp" />
+                    android:textSize="14sp" />
 
                 <RadioButton
                     android:id="@+id/radia_med"
@@ -81,7 +82,7 @@
                     android:buttonTint="@color/white"
                     android:text="Medical"
                     android:textColor="@color/white"
-                    android:textSize="9sp" />
+                    android:textSize="14sp" />
 
                 <RadioButton
                     android:id="@+id/radia_comm"
@@ -90,7 +91,7 @@
                     android:buttonTint="@color/white"
                     android:text="Commerce"
                     android:textColor="@color/white"
-                    android:textSize="9sp" />
+                    android:textSize="14sp" />
 
                 <RadioButton
                     android:id="@+id/radia_gvt_exam"
@@ -99,51 +100,60 @@
                     android:buttonTint="@color/white"
                     android:text="Government Exams"
                     android:textColor="@color/white"
-                    android:textSize="9sp" />
+                    android:textSize="14sp" />
 
             </RadioGroup>
 
-
-            <LinearLayout
+            <Button
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:orientation="horizontal">
+                android:text="Search"
+                android:id="@+id/search"
+                android:layout_marginTop="20dp"
+                android:paddingHorizontal="25dp"
+                android:paddingVertical="15dp"/>
 
-            </LinearLayout>
 
-            <RelativeLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:background="@drawable/custam_search_bg">
+<!--            <LinearLayout-->
+<!--                android:layout_width="wrap_content"-->
+<!--                android:layout_height="wrap_content"-->
+<!--                android:orientation="horizontal">-->
 
-                <EditText
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:background="@drawable/custam_search_bg_new"
-                    android:hint="Get Your Answer Quickly"
-                    android:padding="15dp"
-                    android:textColorHint="@android:color/darker_gray"
-                    android:textSize="13sp" />
+<!--            </LinearLayout>-->
 
-                <LinearLayout
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_alignParentEnd="true"
-                    android:layout_centerInParent="true"
-                    android:layout_marginEnd="10dp"
-                    android:background="@drawable/custam_btn"
-                    android:onClick="gotoNext"
-                    android:orientation="vertical"
-                    android:padding="10sp">
+<!--            <RelativeLayout-->
+<!--                android:layout_width="match_parent"-->
+<!--                android:layout_height="wrap_content"-->
+<!--                android:background="@drawable/custam_search_bg">-->
 
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="Search"
-                        android:textColor="@color/white" />
+<!--                <EditText-->
+<!--                    android:layout_width="match_parent"-->
+<!--                    android:layout_height="wrap_content"-->
+<!--                    android:background="@drawable/custam_search_bg_new"-->
+<!--                    android:hint="Get Your Answer Quickly"-->
+<!--                    android:padding="15dp"-->
+<!--                    android:textColorHint="@android:color/darker_gray"-->
+<!--                    android:textSize="13sp" />-->
 
-                </LinearLayout>
-            </RelativeLayout>
+<!--                <LinearLayout-->
+<!--                    android:layout_width="wrap_content"-->
+<!--                    android:layout_height="wrap_content"-->
+<!--                    android:layout_alignParentEnd="true"-->
+<!--                    android:layout_centerInParent="true"-->
+<!--                    android:layout_marginEnd="10dp"-->
+<!--                    android:background="@drawable/custam_btn"-->
+<!--                    android:onClick="gotoNext"-->
+<!--                    android:orientation="vertical"-->
+<!--                    android:padding="10sp">-->
+
+<!--                    <TextView-->
+<!--                        android:layout_width="wrap_content"-->
+<!--                        android:layout_height="wrap_content"-->
+<!--                        android:text="Search"-->
+<!--                        android:textColor="@color/white" />-->
+
+<!--                </LinearLayout>-->
+<!--            </RelativeLayout>-->
 
             <!--            <EditText-->
             <!--                android:layout_width="match_parent"-->
@@ -154,141 +164,6 @@
             <!--                android:queryHint="Search" />-->
 
 
-        </LinearLayout>
-
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_below="@+id/search_layout"
-            android:layout_marginTop="15sp"
-            android:orientation="horizontal">
-
-<!--            <androidx.recyclerview.widget.RecyclerView-->
-<!--                android:id="@+id/top_courses_search_bar"-->
-<!--                android:layout_width="match_parent"-->
-<!--                android:layout_height="wrap_content"-->
-<!--                tools:listitem="@layout/item_course"/>-->
-<!--      todo Make it horizental scrolable and fix spaces      -->
-            <LinearLayout
-                android:orientation="vertical"
-                android:layout_width="300sp"
-                android:layout_height="wrap_content"
-                android:padding="10sp">
-
-                <ImageView
-                    android:layout_width="220sp"
-                    android:layout_height="100sp"
-                    android:src="@color/white" />
-
-                <TextView
-                    android:layout_marginTop="5sp"
-                    android:layout_marginBottom="5sp"
-                    android:textSize="16sp"
-                    android:textStyle="bold"
-                    android:text="Course Name"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"/>
-
-                <TextView
-                    android:layout_marginTop="5sp"
-                    android:layout_marginBottom="5sp"
-                    android:text="course teaher"
-                    android:textSize="12sp"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"/>
-
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:orientation="horizontal">
-                    <ImageView
-                        android:src="@drawable/ic_star_fill_full"
-                        android:layout_width="20sp"
-                        android:layout_height="20sp"
-                        app:tint="@color/star_tint" />
-                    <ImageView
-                        android:src="@drawable/ic_star_fill_full"
-                        android:layout_width="20sp"
-                        android:layout_height="20sp"
-                        app:tint="@color/star_tint" />
-                    <ImageView
-                        android:src="@drawable/ic_star_fill_full"
-                        android:layout_width="20sp"
-                        android:layout_height="20sp"
-                        app:tint="@color/star_tint" />
-                    <ImageView
-                        android:src="@drawable/ic_star_fill_full"
-                        android:layout_width="20sp"
-                        android:layout_height="20sp"
-                        app:tint="@color/star_tint" />
-                    <ImageView
-                        android:src="@drawable/ic_star_fill_half"
-                        android:layout_width="20sp"
-                        android:layout_height="20sp"
-                        app:tint="@color/star_tint" />
-                </LinearLayout>
-
-            </LinearLayout>
-            <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-                xmlns:app="http://schemas.android.com/apk/res-auto"
-                android:orientation="vertical"
-                android:layout_width="300sp"
-                android:layout_height="wrap_content"
-                android:padding="10sp">
-                <ImageView
-                    android:src="@color/white"
-                    android:layout_width="220sp"
-                    android:layout_height="100sp"/>
-
-                <TextView
-                    android:layout_marginTop="5sp"
-                    android:layout_marginBottom="5sp"
-                    android:textSize="16sp"
-                    android:textStyle="bold"
-                    android:text="Course Name"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"/>
-
-                <TextView
-                    android:layout_marginTop="5sp"
-                    android:layout_marginBottom="5sp"
-                    android:text="course teaher"
-                    android:textSize="12sp"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"/>
-
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:orientation="horizontal">
-                    <ImageView
-                        android:src="@drawable/ic_star_fill_full"
-                        android:layout_width="20sp"
-                        android:layout_height="20sp"
-                        app:tint="@color/star_tint" />
-                    <ImageView
-                        android:src="@drawable/ic_star_fill_full"
-                        android:layout_width="20sp"
-                        android:layout_height="20sp"
-                        app:tint="@color/star_tint" />
-                    <ImageView
-                        android:src="@drawable/ic_star_fill_full"
-                        android:layout_width="20sp"
-                        android:layout_height="20sp"
-                        app:tint="@color/star_tint" />
-                    <ImageView
-                        android:src="@drawable/ic_star_fill_full"
-                        android:layout_width="20sp"
-                        android:layout_height="20sp"
-                        app:tint="@color/star_tint" />
-                    <ImageView
-                        android:src="@drawable/ic_star_fill_half"
-                        android:layout_width="20sp"
-                        android:layout_height="20sp"
-                        app:tint="@color/star_tint" />
-                </LinearLayout>
-
-            </LinearLayout>
         </LinearLayout>
 
         <LinearLayout

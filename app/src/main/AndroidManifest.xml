@@ -2,6 +2,10 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.digitalhain.daipsisearch">
 
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+    <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+
     <application
         android:allowBackup="true"
         android:icon="@drawable/app_logo"
@@ -9,7 +13,8 @@
         android:roundIcon="@drawable/app_logo"
         android:supportsRtl="true"
         android:theme="@style/Theme.DaipsiSearch">
-        <activity android:name=".Activities.searchedItemActivity"></activity>
+        <activity android:name=".Activities.AnswerView"></activity>
+        <activity android:name=".Activities.searchedItemActivity" />
         <activity android:name=".Activities.splashActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />

@@ -4,6 +4,7 @@
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:padding="8sp"
+    android:id="@+id/parent"
     android:orientation="vertical">
 
     <LinearLayout
@@ -21,13 +22,15 @@
                 android:layout_weight="1"
                 android:textStyle="bold"
                 android:textSize="16sp"
-                android:text="What is water in chemistry"
+                android:id="@+id/question"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"/>
             <TextView
                 android:layout_weight="1"
                 android:textSize="16sp"
-                android:text="Water, a substance composed of the chem..."
+                android:text=""
+                android:id="@+id/answer"
+                android:maxLines="1"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"/>
         </LinearLayout>
