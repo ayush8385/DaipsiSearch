@@ -1,5 +1,6 @@
 package com.digitalhain.daipsisearch.Activities
 
+import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.widget.TextView
@@ -18,5 +19,11 @@ class AnswerView : AppCompatActivity() {
         question.text = intent.getStringExtra("Ques")
         answer.text = intent.getStringExtra("Ans")
 
+    }
+
+    override fun onBackPressed() {
+        startActivity(Intent(this,MainActivity::class.java))
+        finish()
+        super.onBackPressed()
     }
 }

@@ -4,12 +4,13 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@color/bg"
     tools:context=".Activities.MainActivity">
 
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:background="@color/bg"
+        android:layout_marginTop="25dp"
         android:padding="20sp">
 
         <LinearLayout
@@ -58,6 +59,13 @@
                 android:scaleType="fitCenter"
                 android:src="@drawable/img_center" />
 
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Get Your Answers Here"
+                android:textColor="@color/white"
+                android:textStyle="bold"
+                android:textSize="16dp"/>
 
             <RadioGroup
                 android:id="@+id/groupradio"
@@ -66,14 +74,6 @@
                 android:layout_height="wrap_content"
                 android:orientation="vertical">
 
-                <RadioButton
-                    android:id="@+id/radia_eng"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:buttonTint="@color/white"
-                    android:text="Engineering"
-                    android:textColor="@color/white"
-                    android:textSize="14sp" />
 
                 <RadioButton
                     android:id="@+id/radia_med"
@@ -94,6 +94,15 @@
                     android:textSize="14sp" />
 
                 <RadioButton
+                    android:id="@+id/radia_eng"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:buttonTint="@color/white"
+                    android:text="Engineering"
+                    android:textColor="@color/white"
+                    android:textSize="14sp" />
+
+                <RadioButton
                     android:id="@+id/radia_gvt_exam"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
@@ -109,6 +118,8 @@
                 android:layout_height="wrap_content"
                 android:text="Search"
                 android:id="@+id/search"
+                android:textColor="@color/white"
+                android:background="@drawable/corner_round"
                 android:layout_marginTop="20dp"
                 android:paddingHorizontal="25dp"
                 android:paddingVertical="15dp"/>

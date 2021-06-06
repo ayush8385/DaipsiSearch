@@ -6,6 +6,7 @@ import android.view.Menu
 import android.view.MenuItem
 import android.view.View
 import android.widget.ProgressBar
+import android.widget.TextView
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.widget.SearchView
@@ -23,6 +24,7 @@ class searchedItemActivity : AppCompatActivity() {
     lateinit var recyclerView: RecyclerView
     lateinit var recyclerAdapter:SearchAdapter
     lateinit var layoutManager: RecyclerView.LayoutManager
+    lateinit var textse:TextView
     var subjectArray = arrayListOf<com.digitalhain.daipsisearch.Activities.Subject>()
     lateinit var progressBar: ProgressBar
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -31,6 +33,7 @@ class searchedItemActivity : AppCompatActivity() {
 
         progressBar=findViewById(R.id.progressbar)
         progressBar.visibility= View.VISIBLE
+        textse=findViewById(R.id.text_ser)
 
         val sub=intent.getStringExtra("subject")
         var str=""
@@ -109,7 +112,7 @@ class searchedItemActivity : AppCompatActivity() {
         val search: MenuItem = menu!!.findItem(R.id.search)
 
         val searchView: SearchView = search.actionView as SearchView
-        searchView.queryHint = "Search People"
+        searchView.queryHint = "Search Question..."
 
 
         searchView.setOnQueryTextListener(object : SearchView.OnQueryTextListener {
@@ -120,6 +123,8 @@ class searchedItemActivity : AppCompatActivity() {
 
             override fun onQueryTextChange(newText: String?): Boolean {
                 filterr(newText!!)
+                recyclerView.visibility=View.VISIBLE
+                textse.visibility=View.GONE
                 return true
             }
 

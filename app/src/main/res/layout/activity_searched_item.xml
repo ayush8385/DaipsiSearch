@@ -4,8 +4,19 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@color/bg"
+    android:padding="8dp"
 
     tools:context=".Activities.searchedItemActivity">
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Type in Search..."
+        android:layout_centerInParent="true"
+        android:textSize="24sp"
+        android:textColor="@color/white"
+        android:id="@+id/text_ser"/>
 
     <ProgressBar
         android:layout_width="wrap_content"
@@ -16,6 +27,7 @@
     <androidx.recyclerview.widget.RecyclerView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:visibility="gone"
         android:id="@+id/recyclermain"/>
 
 </RelativeLayout>
