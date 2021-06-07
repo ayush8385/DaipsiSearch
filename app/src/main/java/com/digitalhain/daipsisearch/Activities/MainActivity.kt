@@ -53,8 +53,7 @@ class MainActivity : AppCompatActivity() {
         recyclerAdapter= MainAdapter(this,courseArray)
         recyclerView.layoutManager=layoutManager
         recyclerView.adapter=recyclerAdapter
-
-
+        
 
     }
 }

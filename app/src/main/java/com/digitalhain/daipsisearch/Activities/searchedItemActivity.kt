@@ -25,6 +25,7 @@ class searchedItemActivity : AppCompatActivity() {
     lateinit var recyclerAdapter:SearchAdapter
     lateinit var layoutManager: RecyclerView.LayoutManager
     lateinit var textse:TextView
+    lateinit var progressbar:ProgressBar
     var subjectArray = arrayListOf<com.digitalhain.daipsisearch.Activities.Subject>()
     val filteredlist:ArrayList<com.digitalhain.daipsisearch.Activities.Subject> = ArrayList()
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -32,6 +33,7 @@ class searchedItemActivity : AppCompatActivity() {
         setContentView(R.layout.activity_searched_item)
 
         textse=findViewById(R.id.text_ser)
+        progressbar=findViewById(R.id.progressbar)
 
         val sub=intent.getStringExtra("subject")
         var str=""
@@ -84,6 +86,8 @@ class searchedItemActivity : AppCompatActivity() {
                             recyclerAdapter= SearchAdapter(this,filteredlist)
                             recyclerView.layoutManager=layoutManager
                             recyclerView.adapter=recyclerAdapter
+                            progressbar.visibility =View.GONE
+                            textse.visibility=View.VISIBLE
                             //creating adapter object and setting it to recyclerview
 
 
@@ -121,6 +125,7 @@ class searchedItemActivity : AppCompatActivity() {
                 filterr(newText!!)
 
                 textse.visibility=View.GONE
+//                progressbar.visibility =View.VISIBLE
                 return true
             }
 
@@ -128,7 +133,8 @@ class searchedItemActivity : AppCompatActivity() {
         searchView.setOnQueryTextFocusChangeListener(object :View.OnFocusChangeListener{
             override fun onFocusChange(v: View?, hasFocus: Boolean) {
                 if(!hasFocus){
-                    textse.visibility=View.VISIBLE
+                   // textse.visibility=View.VISIBLE
+//                    progressbar.visibility =View.GONE
                 }
             }
         })
@@ -146,7 +152,8 @@ class searchedItemActivity : AppCompatActivity() {
         if (filtered.isEmpty()){
          //   Toast.makeText(applicationContext,"No Data found", Toast.LENGTH_SHORT).show()
             recyclerAdapter.filterList(filtered)
-            textse.visibility=View.VISIBLE
+           // textse.visibility=View.VISIBLE
+//            progressbar.visibility =View.GONE
         }
         else{
             recyclerAdapter.filterList(filtered)

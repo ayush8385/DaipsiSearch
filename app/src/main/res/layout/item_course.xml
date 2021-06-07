@@ -2,12 +2,12 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:orientation="vertical"
-    android:layout_width="300sp"
+    android:layout_width="250sp"
     android:layout_height="wrap_content"
-    android:padding="10sp">
+    android:padding="5dp">
     <ImageView
         android:src="@color/white"
-        android:layout_width="220sp"
+        android:layout_width="180sp"
         android:layout_height="100sp"/>
 
     <TextView
@@ -23,7 +23,7 @@
     <TextView
         android:layout_marginTop="5sp"
         android:layout_marginBottom="5sp"
-        android:text="course teaher"
+        android:text="course teacher"
         android:textSize="12sp"
         android:id="@+id/teacher"
         android:layout_width="match_parent"
