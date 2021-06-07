@@ -139,9 +139,7 @@
                     android:id="@+id/recyclercard"
                     android:layout_width="match_parent"
                     android:layout_height="220sp"
-                    tools:listitem="@layout/item_course"
-                    android:layout_margin="5dp"
-                    android:layout_marginTop="10dp" />
+                    android:layout_marginTop="10dp"/>
             </LinearLayout>
 
 

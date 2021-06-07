@@ -39,6 +39,7 @@ class searchedItemActivity : AppCompatActivity() {
         var str=""
 
         supportActionBar!!.title=sub
+
         if(sub=="Engineering"){
             str="engineering.php"
         }
