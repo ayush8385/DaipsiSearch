@@ -34,7 +34,7 @@ class MainActivity : AppCompatActivity() {
         courseArray.add(Subject("Abhi","Web Development"))
         courseArray.add(Subject("Jay","React"))
         courseArray.add(Subject("Ram","Java"))
-        courseArray.add(Subject("Name","Computer"))
+        courseArray.add(Subject("John","Computer"))
         courseArray.add(Subject("Sam","Php"))
         courseArray.add(Subject("Jam","C++"))
 

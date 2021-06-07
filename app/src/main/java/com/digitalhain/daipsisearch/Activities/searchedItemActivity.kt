@@ -18,6 +18,7 @@ import com.android.volley.toolbox.Volley
 import com.digitalhain.daipsisearch.R
 import org.json.JSONArray
 import org.json.JSONException
+import pl.droidsonroids.gif.GifImageView
 import javax.security.auth.Subject
 
 class searchedItemActivity : AppCompatActivity() {
@@ -25,7 +26,9 @@ class searchedItemActivity : AppCompatActivity() {
     lateinit var recyclerAdapter:SearchAdapter
     lateinit var layoutManager: RecyclerView.LayoutManager
     lateinit var textse:TextView
+    lateinit var noDataText:TextView
     lateinit var progressbar:ProgressBar
+    lateinit var gif:GifImageView
     var subjectArray = arrayListOf<com.digitalhain.daipsisearch.Activities.Subject>()
     val filteredlist:ArrayList<com.digitalhain.daipsisearch.Activities.Subject> = ArrayList()
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -33,7 +36,9 @@ class searchedItemActivity : AppCompatActivity() {
         setContentView(R.layout.activity_searched_item)
 
         textse=findViewById(R.id.text_ser)
+        noDataText=findViewById(R.id.noDataText)
         progressbar=findViewById(R.id.progressbar)
+        gif=findViewById(R.id.gif)
 
         val sub=intent.getStringExtra("subject")
         var str=""
@@ -154,6 +159,8 @@ class searchedItemActivity : AppCompatActivity() {
          //   Toast.makeText(applicationContext,"No Data found", Toast.LENGTH_SHORT).show()
             recyclerAdapter.filterList(filtered)
            // textse.visibility=View.VISIBLE
+            gif.visibility=View.VISIBLE
+            noDataText.visibility=View.VISIBLE
 //            progressbar.visibility =View.GONE
         }
         else{
