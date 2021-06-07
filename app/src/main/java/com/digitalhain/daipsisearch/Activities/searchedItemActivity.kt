@@ -131,6 +131,8 @@ class searchedItemActivity : AppCompatActivity() {
                 filterr(newText!!)
 
                 textse.visibility=View.GONE
+                gif.visibility=View.VISIBLE
+                noDataText.visibility=View.VISIBLE
 //                progressbar.visibility =View.VISIBLE
                 return true
             }
