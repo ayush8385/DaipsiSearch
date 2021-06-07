@@ -92,8 +92,11 @@ class searchedItemActivity : AppCompatActivity() {
                             recyclerAdapter= SearchAdapter(this,filteredlist)
                             recyclerView.layoutManager=layoutManager
                             recyclerView.adapter=recyclerAdapter
-                            progressbar.visibility =View.GONE
                             textse.visibility=View.VISIBLE
+                            progressbar.visibility =View.GONE
+                            gif.visibility = View.GONE
+                            noDataText.visibility = View.GONE
+
                             //creating adapter object and setting it to recyclerview
 
 
@@ -129,11 +132,6 @@ class searchedItemActivity : AppCompatActivity() {
 
             override fun onQueryTextChange(newText: String?): Boolean {
                 filterr(newText!!)
-
-                textse.visibility=View.GONE
-                gif.visibility=View.VISIBLE
-                noDataText.visibility=View.VISIBLE
-//                progressbar.visibility =View.VISIBLE
                 return true
             }
 
@@ -141,6 +139,9 @@ class searchedItemActivity : AppCompatActivity() {
         searchView.setOnQueryTextFocusChangeListener(object :View.OnFocusChangeListener{
             override fun onFocusChange(v: View?, hasFocus: Boolean) {
                 if(!hasFocus){
+                    textse.visibility=View.VISIBLE
+                    gif.visibility = View.GONE
+                    noDataText.visibility = View.GONE
                    // textse.visibility=View.VISIBLE
 //                    progressbar.visibility =View.GONE
                 }
@@ -158,15 +159,15 @@ class searchedItemActivity : AppCompatActivity() {
             }
         }
         if (filtered.isEmpty()){
+            textse.visibility=View.GONE
+            gif.visibility = View.VISIBLE
+            noDataText.visibility = View.VISIBLE
          //   Toast.makeText(applicationContext,"No Data found", Toast.LENGTH_SHORT).show()
             recyclerAdapter.filterList(filtered)
-           // textse.visibility=View.VISIBLE
-            gif.visibility=View.VISIBLE
-            noDataText.visibility=View.VISIBLE
-//            progressbar.visibility =View.GONE
         }
         else{
             recyclerAdapter.filterList(filtered)
+
         }
 
 

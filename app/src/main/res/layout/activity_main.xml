@@ -138,7 +138,8 @@
                 <androidx.recyclerview.widget.RecyclerView
                     android:id="@+id/recyclercard"
                     android:layout_width="match_parent"
-                    android:layout_height="220sp"
+                    android:layout_height="200sp"
+                    tools:listitem="@layout/item_course"
                     android:layout_marginTop="10dp"/>
             </LinearLayout>
 

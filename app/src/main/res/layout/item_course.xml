@@ -3,16 +3,18 @@
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:orientation="vertical"
-    android:layout_width="250sp"
-    android:layout_height="200sp"
+    android:layout_width="200sp"
+    android:layout_height="190sp"
+    android:layout_margin="10dp"
+    app:cardBackgroundColor="@color/white"
     android:elevation="8sp">
     <LinearLayout
-        android:layout_width="250sp"
-        android:layout_height="200sp"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
         android:orientation="vertical"
         android:padding="8dp">
         <ImageView
-            android:layout_width="wrap_content"
+            android:layout_width="150sp"
             android:layout_height="100sp"
             android:scaleType="fitXY"
             android:src="@drawable/coursedummy"/>
@@ -23,6 +25,7 @@
             android:textSize="16sp"
             android:textStyle="bold"
             android:text="Course Name"
+            android:textColor="@color/purple_700"
             android:id="@+id/name"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"/>
@@ -31,6 +34,7 @@
             android:layout_marginBottom="5sp"
             android:text="course teacher"
             android:textSize="12sp"
+            android:textColor="@color/purple_500"
             android:id="@+id/teacher"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"/>
