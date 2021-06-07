@@ -8,6 +8,7 @@
     <ImageView
         android:layout_width="wrap_content"
         android:layout_height="100sp"
+        android:scaleType="fitXY"
         android:src="@drawable/coursedummy"/>
 
     <TextView
