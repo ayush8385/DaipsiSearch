@@ -10,16 +10,33 @@ import android.util.Log
 import android.view.View
 import android.widget.Button
 import android.widget.Toast
+import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.recyclerview.widget.RecyclerView
 import com.digitalhain.daipsisearch.Activities.searchedItemActivity
 
 class MainActivity : AppCompatActivity() {
     lateinit var radioGroup: RadioGroup
     lateinit var search:Button
+    lateinit var recyclerView: RecyclerView
+    lateinit var recyclerAdapter:MainAdapter
+    lateinit var layoutManager: RecyclerView.LayoutManager
+    var courseArray = arrayListOf<Subject>()
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
         radioGroup = findViewById(R.id.groupradio)
         search = findViewById(R.id.search)
+
+        recyclerView=findViewById(R.id.recyclercard)
+        layoutManager= LinearLayoutManager(this,LinearLayoutManager.HORIZONTAL,false)
+
+        courseArray.add(Subject("Jack","Android"))
+        courseArray.add(Subject("Abhi","Web Development"))
+        courseArray.add(Subject("Jay","React"))
+        courseArray.add(Subject("Ram","Java"))
+        courseArray.add(Subject("Name","Computer"))
+        courseArray.add(Subject("Sam","Php"))
+        courseArray.add(Subject("Jam","C++"))
 
         search.setOnClickListener{
             val selectedId = radioGroup.checkedRadioButtonId
@@ -33,22 +50,11 @@ class MainActivity : AppCompatActivity() {
             }
         }
 
-//        radioGroup!!.clearCheck()
-//        radioGroup!!.setOnCheckedChangeListener { group, checkedId ->
-//            val radioButton = group.findViewById<View>(checkedId) as RadioButton
-//            when (checkedId) {
-//                R.id.radia_eng -> Log.d("RADIO_BTN", "radia_eng Clicked")
-//                R.id.radia_med -> Log.d("RADIO_BTN", "radia_med Clicked")
-//                R.id.radia_comm -> Log.d("RADIO_BTN", "radia_comm Clicked")
-//                R.id.radia_gvt_exam -> Log.d("RADIO_BTN", "radia_gvt_exam Clicked")
-//            }
-//        }
+        recyclerAdapter= MainAdapter(this,courseArray)
+        recyclerView.layoutManager=layoutManager
+        recyclerView.adapter=recyclerAdapter
+
 
 
     }
-
-//    fun gotoNext(view: View?) {
-//        val intent = Intent(this@MainActivity, searchedItemActivity::class.java)
-//        startActivity(intent)
-//    }
 }

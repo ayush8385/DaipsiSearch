@@ -72,7 +72,7 @@
                 android:layout_marginTop="14dp"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:orientation="vertical">
+                android:orientation="horizontal">
 
 
                 <RadioButton
@@ -82,7 +82,7 @@
                     android:buttonTint="@color/white"
                     android:text="Medical"
                     android:textColor="@color/white"
-                    android:textSize="14sp" />
+                    android:textSize="9sp" />
 
                 <RadioButton
                     android:id="@+id/radia_comm"
@@ -91,7 +91,7 @@
                     android:buttonTint="@color/white"
                     android:text="Commerce"
                     android:textColor="@color/white"
-                    android:textSize="14sp" />
+                    android:textSize="9sp" />
 
                 <RadioButton
                     android:id="@+id/radia_eng"
@@ -100,7 +100,7 @@
                     android:buttonTint="@color/white"
                     android:text="Engineering"
                     android:textColor="@color/white"
-                    android:textSize="14sp" />
+                    android:textSize="9sp" />
 
                 <RadioButton
                     android:id="@+id/radia_gvt_exam"
@@ -109,7 +109,7 @@
                     android:buttonTint="@color/white"
                     android:text="Government Exams"
                     android:textColor="@color/white"
-                    android:textSize="14sp" />
+                    android:textSize="9sp" />
 
             </RadioGroup>
 
@@ -173,6 +173,12 @@
             <!--                android:layout_marginTop="10sp"-->
             <!--                android:iconifiedByDefault="false"-->
             <!--                android:queryHint="Search" />-->
+
+            <androidx.recyclerview.widget.RecyclerView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:id="@+id/recyclercard"/>
 
 
         </LinearLayout>
