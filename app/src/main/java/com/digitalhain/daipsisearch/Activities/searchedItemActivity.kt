@@ -26,13 +26,11 @@ class searchedItemActivity : AppCompatActivity() {
     lateinit var layoutManager: RecyclerView.LayoutManager
     lateinit var textse:TextView
     var subjectArray = arrayListOf<com.digitalhain.daipsisearch.Activities.Subject>()
-    lateinit var progressBar: ProgressBar
+    val filteredlist:ArrayList<com.digitalhain.daipsisearch.Activities.Subject> = ArrayList()
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_searched_item)
 
-        progressBar=findViewById(R.id.progressbar)
-        progressBar.visibility= View.VISIBLE
         textse=findViewById(R.id.text_ser)
 
         val sub=intent.getStringExtra("subject")
@@ -62,7 +60,6 @@ class searchedItemActivity : AppCompatActivity() {
                 val stringRequest = StringRequest(
                     Request.Method.GET, url,
                     { response ->
-                        Log.d("HEloooo,...","Hellll")
                         try {
                             //converting the string to json array object
                             val array = JSONArray(response)
@@ -83,11 +80,10 @@ class searchedItemActivity : AppCompatActivity() {
                                 //adding the product to product list
                             }
 
-                            recyclerAdapter= SearchAdapter(this,subjectArray)
 
+                            recyclerAdapter= SearchAdapter(this,filteredlist)
                             recyclerView.layoutManager=layoutManager
                             recyclerView.adapter=recyclerAdapter
-                            progressBar.visibility=View.GONE
                             //creating adapter object and setting it to recyclerview
 
 
@@ -123,37 +119,41 @@ class searchedItemActivity : AppCompatActivity() {
 
             override fun onQueryTextChange(newText: String?): Boolean {
                 filterr(newText!!)
-                recyclerView.visibility=View.VISIBLE
+
                 textse.visibility=View.GONE
                 return true
             }
 
         })
-
-
-
+        searchView.setOnQueryTextFocusChangeListener(object :View.OnFocusChangeListener{
+            override fun onFocusChange(v: View?, hasFocus: Boolean) {
+                if(!hasFocus){
+                    textse.visibility=View.VISIBLE
+                }
+            }
+        })
         return super.onCreateOptionsMenu(menu)
     }
 
 
     fun filterr(text:String){
-        val filteredlist:ArrayList<com.digitalhain.daipsisearch.Activities.Subject> = ArrayList()
-
+        val filtered:ArrayList<com.digitalhain.daipsisearch.Activities.Subject> = ArrayList()
         for(item in subjectArray){
-            if(item.ques!!.toLowerCase().contains(text.toLowerCase())){
-                //recyclerView.scrollToPosition(mChatlist.indexOf(item))
-                filteredlist.add(item)
+            if(item.ques!!.toLowerCase().contains(text.toLowerCase()) && text!=""){
+                filtered.add(item)
             }
         }
-        if (filteredlist.isEmpty()){
-            Toast.makeText(applicationContext,"No Data found", Toast.LENGTH_SHORT).show()
-            recyclerAdapter.filterList(filteredlist)
+        if (filtered.isEmpty()){
+         //   Toast.makeText(applicationContext,"No Data found", Toast.LENGTH_SHORT).show()
+            recyclerAdapter.filterList(filtered)
+            textse.visibility=View.VISIBLE
         }
         else{
-            recyclerAdapter.filterList(filteredlist)
+            recyclerAdapter.filterList(filtered)
         }
 
 
     }
+
 
 }

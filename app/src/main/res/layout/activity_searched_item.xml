@@ -18,16 +18,9 @@
         android:textColor="@color/white"
         android:id="@+id/text_ser"/>
 
-    <ProgressBar
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:id="@+id/progressbar"
-        android:layout_centerInParent="true"/>
-
     <androidx.recyclerview.widget.RecyclerView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:visibility="gone"
         android:id="@+id/recyclermain"/>
 
 </RelativeLayout>
