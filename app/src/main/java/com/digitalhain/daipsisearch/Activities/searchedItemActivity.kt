@@ -142,8 +142,6 @@ class searchedItemActivity : AppCompatActivity() {
                     textse.visibility=View.VISIBLE
                     gif.visibility = View.GONE
                     noDataText.visibility = View.GONE
-                   // textse.visibility=View.VISIBLE
-//                    progressbar.visibility =View.GONE
                 }
             }
         })
