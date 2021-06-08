@@ -1,5 +1,8 @@
 package com.digitalhain.daipsisearch.Activities
 
+//import pl.droidsonroids.gif.GifImageView
+
+import android.content.Intent
 import android.os.Bundle
 import android.util.Log
 import android.view.Menu
@@ -12,14 +15,19 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.widget.SearchView
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+import com.android.volley.AuthFailureError
 import com.android.volley.Request
+import com.android.volley.Response
+import com.android.volley.toolbox.JsonObjectRequest
+import com.android.volley.toolbox.JsonRequest
 import com.android.volley.toolbox.StringRequest
 import com.android.volley.toolbox.Volley
 import com.digitalhain.daipsisearch.R
 import org.json.JSONArray
 import org.json.JSONException
+import org.json.JSONObject
 import pl.droidsonroids.gif.GifImageView
-import javax.security.auth.Subject
+
 
 class searchedItemActivity : AppCompatActivity() {
     lateinit var recyclerView: RecyclerView
@@ -27,8 +35,8 @@ class searchedItemActivity : AppCompatActivity() {
     lateinit var layoutManager: RecyclerView.LayoutManager
     lateinit var textse:TextView
     lateinit var noDataText:TextView
-    lateinit var progressbar:ProgressBar
-    lateinit var gif:GifImageView
+    lateinit var url:String
+    lateinit var gif: GifImageView
     var subjectArray = arrayListOf<com.digitalhain.daipsisearch.Activities.Subject>()
     val filteredlist:ArrayList<com.digitalhain.daipsisearch.Activities.Subject> = ArrayList()
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -37,7 +45,6 @@ class searchedItemActivity : AppCompatActivity() {
 
         textse=findViewById(R.id.text_ser)
         noDataText=findViewById(R.id.noDataText)
-        progressbar=findViewById(R.id.progressbar)
         gif=findViewById(R.id.gif)
 
         val sub=intent.getStringExtra("subject")
@@ -58,7 +65,7 @@ class searchedItemActivity : AppCompatActivity() {
             str="govtexams.php"
         }
 
-        val url="https://daipsi.com/api/"+str
+        url="https://daipsi.com/api/"+str
         val queue= Volley.newRequestQueue(this)
 
         recyclerView=findViewById(R.id.recyclermain)
@@ -93,7 +100,6 @@ class searchedItemActivity : AppCompatActivity() {
                             recyclerView.layoutManager=layoutManager
                             recyclerView.adapter=recyclerAdapter
                             textse.visibility=View.VISIBLE
-                            progressbar.visibility =View.GONE
                             gif.visibility = View.GONE
                             noDataText.visibility = View.GONE
 
@@ -127,6 +133,7 @@ class searchedItemActivity : AppCompatActivity() {
         searchView.setOnQueryTextListener(object : SearchView.OnQueryTextListener {
             override fun onQueryTextSubmit(query: String?): Boolean {
                 searchView.clearFocus()
+                filtering(query!!)
                 return true
             }
 
@@ -150,6 +157,43 @@ class searchedItemActivity : AppCompatActivity() {
         return super.onCreateOptionsMenu(menu)
     }
 
+    private fun filtering(text: String) {
+        val filtered:ArrayList<com.digitalhain.daipsisearch.Activities.Subject> = ArrayList()
+        for(item in subjectArray){
+            if(item.ques!!.toLowerCase().contains(text!!.toLowerCase()) && text!=""){
+                filtered.add(item)
+            }
+        }
+        if(filtered.isEmpty()){
+
+            val queue=Volley.newRequestQueue(this)
+
+            val jsonObjectRequest=object : StringRequest(Method.POST,url,Response.Listener {
+                try{
+                    if(it.equals("success")){
+                        Toast.makeText(this,"Question Saved to Database", Toast.LENGTH_LONG).show()
+                        Log.d("repsonse...",it)
+                    }
+                    else{
+                        Toast.makeText(this,"Error While placing Order", Toast.LENGTH_LONG).show()
+                    }
+                }
+                catch (e:Exception){
+                    Toast.makeText(applicationContext,"Error Occurred",Toast.LENGTH_SHORT).show()
+                }
+            },Response.ErrorListener {
+                Toast.makeText(this, "Volley error occurred!!!", Toast.LENGTH_SHORT).show()
+            }){
+                override fun getParams(): MutableMap<String, String> {
+                    val params=HashMap<String,String>()
+                    params.put("question",text)
+                    return params
+                }
+            }
+            queue.add(jsonObjectRequest)
+        }
+    }
+
 
     fun filterr(text:String){
         val filtered:ArrayList<com.digitalhain.daipsisearch.Activities.Subject> = ArrayList()
@@ -160,7 +204,7 @@ class searchedItemActivity : AppCompatActivity() {
         }
         if (filtered.isEmpty()){
             textse.visibility=View.GONE
-            gif.visibility = View.VISIBLE
+           // gif.visibility = View.VISIBLE
             noDataText.visibility = View.VISIBLE
          //   Toast.makeText(applicationContext,"No Data found", Toast.LENGTH_SHORT).show()
             recyclerAdapter.filterList(filtered)
