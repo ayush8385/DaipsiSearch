@@ -29,12 +29,14 @@
                     android:layout_height="wrap_content"
                     android:orientation="horizontal">
                     <TextView
+                        android:textColor="@color/text_color"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="Que: "
                         android:textSize="18sp"
                         android:textStyle="bold" />
                     <TextView
+                        android:textColor="@color/text_color"
                         android:id="@+id/questionn"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
@@ -48,6 +50,7 @@
                     android:layout_height="wrap_content"
                     android:orientation="horizontal">
                     <TextView
+                        android:textColor="@color/text_color"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginTop="10dp"
@@ -55,6 +58,7 @@
                         android:textSize="16sp" />
                     <TextView
                         android:id="@+id/answerr"
+                        android:textColor="@color/text_color"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_marginTop="10dp"
