@@ -10,8 +10,7 @@
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_marginTop="10dp"
-        android:padding="20sp">
+        android:padding="18sp">
 
         <LinearLayout
             android:id="@+id/header_title"
@@ -147,6 +146,24 @@
                     tools:listitem="@layout/item_course"
                     android:layout_marginTop="5dp"/>
             </LinearLayout>
+
+            <RelativeLayout
+                android:layout_marginTop="15dp"
+                android:layout_below="@+id/linearcourse"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+                <TextView
+                    android:id="@+id/blog"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerInParent="true"
+                    android:text="Take me to the blog..."
+                    android:textColor="@color/purple_500"
+                    android:textStyle="bold"
+                    android:textSize="20dp"/>
+
+            </RelativeLayout>
+
 
 
         </LinearLayout>
