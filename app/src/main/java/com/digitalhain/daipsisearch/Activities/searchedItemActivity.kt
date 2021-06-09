@@ -198,7 +198,7 @@ class searchedItemActivity : AppCompatActivity() {
         for(item in subjectArray){
             if(item.ques!!.toLowerCase().contains(text.toLowerCase()) && text!=""){
                 filtered.add(item)
-                noDataText.visibility = View.VISIBLE
+                noDataText.visibility = View.GONE
             }
         }
         if (filtered.isEmpty()){
