@@ -204,7 +204,7 @@ class searchedItemActivity : AppCompatActivity() {
         if (filtered.isEmpty()){
             textse.visibility=View.GONE
            // gif.visibility = View.VISIBLE
-            noDataText.visibility = View.VISIBLE
+            noDataText.visibility = View.GONE
          //   Toast.makeText(applicationContext,"No Data found", Toast.LENGTH_SHORT).show()
             recyclerAdapter.filterList(filtered)
         }
