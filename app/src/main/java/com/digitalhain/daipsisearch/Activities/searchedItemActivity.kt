@@ -169,7 +169,7 @@ class searchedItemActivity : AppCompatActivity() {
             val jsonObjectRequest=object : StringRequest(Method.POST,url,Response.Listener {
                 try{
                     if(it.equals("success")){
-                        Toast.makeText(this,"Question Saved to Database", Toast.LENGTH_LONG).show()
+                        Toast.makeText(this,"Answer will be available in 24 hours", Toast.LENGTH_LONG).show()
                         Log.d("repsonse...",it)
                     }
                     else{
@@ -198,6 +198,7 @@ class searchedItemActivity : AppCompatActivity() {
         for(item in subjectArray){
             if(item.ques!!.toLowerCase().contains(text.toLowerCase()) && text!=""){
                 filtered.add(item)
+                noDataText.visibility = View.VISIBLE
             }
         }
         if (filtered.isEmpty()){
