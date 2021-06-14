@@ -16,7 +16,8 @@
         <activity android:name=".Activities.WebViewActivity"
             android:theme="@style/Theme.MaterialComponents.NoActionBar"></activity>
         <activity android:name=".Activities.AnswerView" />
-        <activity android:name=".Activities.searchedItemActivity" />
+        <activity android:name=".Activities.searchedItemActivity"
+            android:theme="@style/Theme.MaterialComponents.NoActionBar"/>
         <activity
             android:name=".Activities.splashActivity"
             android:theme="@style/Theme.MaterialComponents.NoActionBar">
