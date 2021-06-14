@@ -13,9 +13,12 @@
         android:roundIcon="@drawable/app_logo"
         android:supportsRtl="true"
         android:theme="@style/Theme.DaipsiSearch">
-        <activity android:name=".Activities.AnswerView"></activity>
+        <activity android:name=".Activities.WebViewActivity"
+            android:theme="@style/Theme.MaterialComponents.NoActionBar"></activity>
+        <activity android:name=".Activities.AnswerView" />
         <activity android:name=".Activities.searchedItemActivity" />
-        <activity android:name=".Activities.splashActivity"
+        <activity
+            android:name=".Activities.splashActivity"
             android:theme="@style/Theme.MaterialComponents.NoActionBar">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -23,8 +26,9 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".Activities.MainActivity"
-            android:theme="@style/Theme.MaterialComponents.NoActionBar"/>
+        <activity
+            android:name=".Activities.MainActivity"
+            android:theme="@style/Theme.MaterialComponents.NoActionBar" />
     </application>
 
 </manifest>

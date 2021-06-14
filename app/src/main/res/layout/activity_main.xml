@@ -10,8 +10,7 @@
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_marginTop="10dp"
-        android:padding="20sp">
+        android:padding="18sp">
 
         <LinearLayout
             android:id="@+id/header_title"
@@ -21,6 +20,7 @@
             android:orientation="horizontal">
 
             <TextView
+                android:visibility="invisible"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:background="@drawable/corner_round"
@@ -39,6 +39,7 @@
                 android:textStyle="bold" />
 
             <ImageView
+                android:visibility="invisible"
                 android:layout_width="30sp"
                 android:layout_height="30sp"
                 android:src="@drawable/app_logo" />
@@ -55,11 +56,12 @@
 
             <ImageView
                 android:layout_width="wrap_content"
-                android:layout_height="160dp"
+                android:layout_height="120dp"
                 android:scaleType="fitCenter"
                 android:src="@drawable/img_center" />
 
             <TextView
+                android:visibility="gone"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="Get Your Answers Here"
@@ -115,14 +117,16 @@
 
             <Button
                 android:id="@+id/search"
-                android:layout_width="120dp"
-                android:layout_height="50dp"
+                android:layout_width="190dp"
+                android:layout_height="40dp"
                 android:layout_marginTop="10dp"
+                android:textSize="11sp"
                 android:background="@drawable/corner_round"
-                android:text="Search"
+                android:text="Get Your Answers Here"
                 android:textColor="@color/white" />
 
             <LinearLayout
+                android:layout_marginTop="10sp"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:orientation="vertical">
@@ -132,6 +136,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="Top Courses"
+                    android:textSize="15sp"
                     android:textColor="@color/purple_500"
                     android:textStyle="bold" />
 
@@ -140,8 +145,27 @@
                     android:layout_width="match_parent"
                     android:layout_height="200sp"
                     tools:listitem="@layout/item_course"
-                    android:layout_marginTop="10dp"/>
+                    android:layout_marginTop="5dp"/>
             </LinearLayout>
+
+            <RelativeLayout
+                android:layout_marginTop="15dp"
+                android:layout_below="@+id/linearcourse"
+                android:layout_width="match_parent"
+                android:gravity="center"
+                android:padding="10sp"
+                android:layout_height="wrap_content">
+                <TextView
+                    android:id="@+id/blog"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Take me to the blog..."
+                    android:textColor="@color/purple_500"
+                    android:textStyle="bold"
+                    android:textSize="15sp"/>
+
+            </RelativeLayout>
+
 
 
         </LinearLayout>
