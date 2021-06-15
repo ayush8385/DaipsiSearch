@@ -33,13 +33,18 @@ class MainActivity : AppCompatActivity() {
         recyclerView = findViewById(R.id.recyclercard)
         layoutManager = LinearLayoutManager(this, LinearLayoutManager.HORIZONTAL, false)
 
-        courseArray.add(Subject("Jack", "Android"))
-        courseArray.add(Subject("Abhi", "Web Development"))
-        courseArray.add(Subject("Jay", "React"))
-        courseArray.add(Subject("Ram", "Java"))
-        courseArray.add(Subject("John", "Computer"))
-        courseArray.add(Subject("Sam", "Php"))
-        courseArray.add(Subject("Jam", "C++"))
+        courseArray.add(Subject("Jack", "NEET"))
+        courseArray.add(Subject("Johny", "JEE"))
+        courseArray.add(Subject("July", "CA"))
+        courseArray.add(Subject("justine", "CS"))
+        courseArray.add(Subject("Jack", "NEET"))
+        courseArray.add(Subject("Johny", "JEE"))
+        courseArray.add(Subject("July", "CA"))
+        courseArray.add(Subject("justine", "CS"))
+        courseArray.add(Subject("Jack", "NEET"))
+        courseArray.add(Subject("Johny", "JEE"))
+        courseArray.add(Subject("July", "CA"))
+        courseArray.add(Subject("justine", "CS"))
 
         search.setOnClickListener {
             val selectedId = radioGroup.checkedRadioButtonId
