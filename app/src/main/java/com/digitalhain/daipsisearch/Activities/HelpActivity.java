@@ -3,6 +3,7 @@ package com.digitalhain.daipsisearch.Activities;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.os.Bundle;
+import com.digitalhain.daipsisearch.R;
 
 import com.digitalhain.daipsisearch.R;
 
