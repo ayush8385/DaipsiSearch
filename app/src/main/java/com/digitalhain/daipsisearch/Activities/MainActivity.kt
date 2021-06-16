@@ -6,14 +6,16 @@ import android.widget.*
 import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+import com.digitalhain.daipsisearch.BuildConfig
 import com.digitalhain.daipsisearch.R
 
 
 class MainActivity : AppCompatActivity() {
     lateinit var radioGroup: RadioGroup
     lateinit var search: Button
+    lateinit var share: Button
+    lateinit var help: Button
     lateinit var blog: TextView
-
     lateinit var recyclerView: RecyclerView
     lateinit var recyclerAdapter: MainAdapter
     lateinit var layoutManager: RecyclerView.LayoutManager
@@ -24,6 +26,36 @@ class MainActivity : AppCompatActivity() {
         radioGroup = findViewById(R.id.groupradio)
         search = findViewById(R.id.search)
         blog = findViewById(R.id.blog)
+        share = findViewById(R.id.share)
+        help = findViewById(R.id.help)
+
+
+        help.setOnClickListener {
+            val intent = Intent(this@MainActivity, HelpActivity::class.java)
+            startActivity(intent)
+
+        }
+
+
+        share.setOnClickListener {
+            try {
+                val shareIntent = Intent(Intent.ACTION_SEND)
+                shareIntent.type = "text/plain"
+                shareIntent.putExtra(Intent.EXTRA_SUBJECT, "Daipsi Search")
+                var shareMessage = "\nLet me recommend you this application\n\n"
+                shareMessage =
+                    """
+                    ${shareMessage}https://play.google.com/store/apps/details?id=${BuildConfig.APPLICATION_ID}
+                    
+                    
+                    """.trimIndent()
+                shareIntent.putExtra(Intent.EXTRA_TEXT, shareMessage)
+                startActivity(Intent.createChooser(shareIntent, "choose one"))
+            } catch (e: Exception) {
+                //e.toString();
+            }
+
+        }
 
         blog.setOnClickListener {
             val intent = Intent(this@MainActivity, WebViewActivity::class.java)
