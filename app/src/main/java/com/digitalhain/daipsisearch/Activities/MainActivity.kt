@@ -13,8 +13,8 @@ import com.digitalhain.daipsisearch.R
 class MainActivity : AppCompatActivity() {
     lateinit var radioGroup: RadioGroup
     lateinit var search: Button
-    lateinit var share: Button
-    lateinit var help: Button
+    lateinit var share: ImageButton
+    lateinit var help: ImageButton
     lateinit var blog: TextView
     lateinit var recyclerView: RecyclerView
     lateinit var recyclerAdapter: MainAdapter

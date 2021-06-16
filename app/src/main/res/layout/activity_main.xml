@@ -15,6 +15,23 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:padding="18sp">
+            <ImageButton
+                android:layout_margin="10sp"
+                android:backgroundTint="@color/purple_700"
+                android:background="@drawable/ic_baseline_share_24"
+                android:layout_alignParentEnd="true"
+                android:id="@+id/share"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" />
+
+
+            <ImageButton
+                android:layout_margin="10sp"
+                android:backgroundTint="@color/purple_700"
+                android:background="@drawable/ic_baseline_help_outline_24"
+                android:id="@+id/help"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" />
 
             <LinearLayout
                 android:id="@+id/header_title"
@@ -121,7 +138,7 @@
 
                 <Button
                     android:id="@+id/search"
-                    android:layout_width="190dp"
+                    android:layout_width="wrap_content"
                     android:layout_height="40dp"
                     android:layout_marginTop="10dp"
                     android:textSize="11sp"
@@ -156,46 +173,36 @@
                     android:layout_marginTop="15dp"
                     android:layout_below="@+id/linearcourse"
                     android:layout_width="match_parent"
-                    android:gravity="center"
                     android:padding="10sp"
                     android:layout_height="wrap_content">
                     <TextView
                         android:id="@+id/blog"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="Take me to the blog..."
+                        android:text="Daipsi Blog"
                         android:textColor="@color/purple_500"
                         android:textStyle="bold"
                         android:textSize="15sp"/>
 
-                    <Button
-                        android:id="@+id/help"
-                        android:layout_marginTop="10dp"
-                        android:layout_below="@id/blog"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="Help"/>
-
-                    <Button
-                        android:id="@+id/share"
-                        android:layout_marginTop="10dp"
-                        android:layout_below="@id/help"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="Share"/>
+<!--                    <Button-->
+<!--                        android:id="@+id/share"-->
+<!--                        android:layout_marginTop="10dp"-->
+<!--                        android:layout_below="@id/help"-->
+<!--                        android:layout_width="wrap_content"-->
+<!--                        android:layout_height="wrap_content"-->
+<!--                        android:text="Share"/>-->
 
                 </RelativeLayout>
 
-
-
             </LinearLayout>
-
 
         </RelativeLayout>
 
     </androidx.core.widget.NestedScrollView>
 
     <LinearLayout
+        android:layout_marginBottom="10sp"
+        android:padding="5sp"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_alignParentBottom="true"
@@ -205,7 +212,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="@string/powered_by"
-            android:textColor="@color/white"
+            android:textColor="@color/purple_700"
             android:textSize="10sp" />
     </LinearLayout>
 
