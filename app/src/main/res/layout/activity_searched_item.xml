@@ -41,10 +41,18 @@
         />
 
 
+    <androidx.appcompat.widget.SearchView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/search_bar"
+        android:background="@drawable/custam_search_bg_new"
+        android:theme="@style/Widget.AppCompat.SearchView"
+        android:textSize="13sp" />
 
     <androidx.recyclerview.widget.RecyclerView
         tools:listitem="@layout/item_res_search"
         android:layout_width="match_parent"
+        android:layout_below="@+id/search_bar"
         android:layout_height="wrap_content"
         android:id="@+id/recyclermain"
         />

@@ -2,30 +2,27 @@ package com.digitalhain.daipsisearch.Activities
 
 //import pl.droidsonroids.gif.GifImageView
 
-import android.content.Intent
+import android.app.SearchManager
+import android.content.Context
+import android.graphics.Color
 import android.os.Bundle
 import android.util.Log
-import android.view.Menu
-import android.view.MenuItem
 import android.view.View
-import android.widget.ProgressBar
+import android.widget.ImageView
 import android.widget.TextView
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.widget.SearchView
+import androidx.appcompat.widget.SearchView.SearchAutoComplete
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
-import com.android.volley.AuthFailureError
 import com.android.volley.Request
 import com.android.volley.Response
-import com.android.volley.toolbox.JsonObjectRequest
-import com.android.volley.toolbox.JsonRequest
 import com.android.volley.toolbox.StringRequest
 import com.android.volley.toolbox.Volley
 import com.digitalhain.daipsisearch.R
 import org.json.JSONArray
 import org.json.JSONException
-import org.json.JSONObject
 import pl.droidsonroids.gif.GifImageView
 
 
@@ -36,6 +33,7 @@ class searchedItemActivity : AppCompatActivity() {
     lateinit var textse:TextView
     lateinit var noDataText:TextView
     lateinit var url:String
+    lateinit var searchView:SearchView
     lateinit var gif: GifImageView
     var subjectArray = arrayListOf<com.digitalhain.daipsisearch.Activities.Subject>()
     val filteredlist:ArrayList<com.digitalhain.daipsisearch.Activities.Subject> = ArrayList()
@@ -45,27 +43,26 @@ class searchedItemActivity : AppCompatActivity() {
 
         textse=findViewById(R.id.text_ser)
         noDataText=findViewById(R.id.noDataText)
+        searchView=findViewById(R.id.search_bar)
         gif=findViewById(R.id.gif)
 
         val sub=intent.getStringExtra("subject")
         var str=""
 
-        supportActionBar!!.title=sub
-
         if(sub=="Engineering"){
-            str="engineering.php"
+            str="engineering"
         }
         else if(sub=="Medical"){
-            str="medical.php"
+            str="medical"
         }
         else if(sub=="Commerce"){
-            str="commerce.php"
+            str="commerce"
         }
         else{
-            str="govtexams.php"
+            str="govtexams"
         }
 
-        url="https://daipsi.com/api/"+str
+        url="https://daipsi.com/api/"+str+".php/"
         val queue= Volley.newRequestQueue(this)
 
         recyclerView=findViewById(R.id.recyclermain)
@@ -117,20 +114,23 @@ class searchedItemActivity : AppCompatActivity() {
                 Toast.makeText(applicationContext,"Not connected to internet", Toast.LENGTH_LONG).show()
             }
 
+        searchElement()
 
     }
 
-    override fun onCreateOptionsMenu(menu: Menu?): Boolean {
-        val menuInflater = getMenuInflater()
-        menuInflater.inflate(R.menu.search_menu, menu)
+    private fun searchElement() {
 
-        val search: MenuItem = menu!!.findItem(R.id.search)
+        searchView.queryHint="Search Question..."
+        val searchIcon:ImageView = searchView.findViewById(R.id.search_button);
+        searchIcon.setColorFilter(Color.BLACK)
+        val closeIcon:ImageView = searchView.findViewById(R.id.search_close_btn);
+        closeIcon.setColorFilter(Color.BLACK)
+        val theTextArea = searchView.findViewById<View>(R.id.search_src_text) as SearchAutoComplete
+        theTextArea.setTextColor(Color.BLACK)
+        theTextArea.setHintTextColor(Color.DKGRAY)//or any color that you want
 
-        val searchView: SearchView = search.actionView as SearchView
-        searchView.queryHint = "Search Question..."
-
-
-        searchView.setOnQueryTextListener(object : SearchView.OnQueryTextListener {
+        val manager=getSystemService(Context.SEARCH_SERVICE) as SearchManager
+        searchView.setOnQueryTextListener(object :SearchView.OnQueryTextListener{
             override fun onQueryTextSubmit(query: String?): Boolean {
                 searchView.clearFocus()
                 filtering(query!!)
@@ -143,16 +143,6 @@ class searchedItemActivity : AppCompatActivity() {
             }
 
         })
-        searchView.setOnQueryTextFocusChangeListener(object :View.OnFocusChangeListener{
-            override fun onFocusChange(v: View?, hasFocus: Boolean) {
-                if(!hasFocus){
-                    textse.visibility=View.VISIBLE
-                    gif.visibility = View.GONE
-                    noDataText.visibility = View.GONE
-                }
-            }
-        })
-        return super.onCreateOptionsMenu(menu)
     }
 
     private fun filtering(text: String) {
@@ -169,7 +159,7 @@ class searchedItemActivity : AppCompatActivity() {
             val jsonObjectRequest=object : StringRequest(Method.POST,url,Response.Listener {
                 try{
                     if(it.equals("success")){
-                        Toast.makeText(this,"Answer will be available in 24 hours", Toast.LENGTH_LONG).show()
+                        Toast.makeText(this,"Question Saved to Database", Toast.LENGTH_LONG).show()
                         Log.d("repsonse...",it)
                     }
                     else{
@@ -198,13 +188,12 @@ class searchedItemActivity : AppCompatActivity() {
         for(item in subjectArray){
             if(item.ques!!.toLowerCase().contains(text.toLowerCase()) && text!=""){
                 filtered.add(item)
-                noDataText.visibility = View.GONE
             }
         }
         if (filtered.isEmpty()){
             textse.visibility=View.GONE
            // gif.visibility = View.VISIBLE
-            noDataText.visibility = View.GONE
+            noDataText.visibility = View.VISIBLE
          //   Toast.makeText(applicationContext,"No Data found", Toast.LENGTH_SHORT).show()
             recyclerAdapter.filterList(filtered)
         }
