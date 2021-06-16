@@ -4,6 +4,8 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.os.Bundle;
 
+import com.digitalhain.daipsisearch.R;
+
 public class HelpActivity extends AppCompatActivity {
 
     @Override
