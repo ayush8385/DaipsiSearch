@@ -4,6 +4,7 @@ package com.digitalhain.daipsisearch.Activities
 
 import android.app.SearchManager
 import android.content.Context
+import android.content.Intent
 import android.graphics.Color
 import android.os.Bundle
 import android.util.Log
@@ -206,6 +207,12 @@ class searchedItemActivity : AppCompatActivity() {
         }
 
 
+    }
+
+    override fun onBackPressed() {
+        startActivity(Intent(this,MainActivity::class.java))
+        finishAffinity()
+        super.onBackPressed()
     }
 
 
