@@ -14,6 +14,7 @@ import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.widget.SearchView
 import androidx.appcompat.widget.SearchView.SearchAutoComplete
+import androidx.appcompat.widget.SearchView.VIEW_LOG_TAG
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.android.volley.Request
@@ -120,9 +121,11 @@ class searchedItemActivity : AppCompatActivity() {
 
     private fun searchElement() {
 
-        searchView.queryHint="Search Question..."
-        val searchIcon:ImageView = searchView.findViewById(R.id.search_button);
-        searchIcon.setColorFilter(Color.BLACK)
+        searchView.queryHint="Search your question..."
+        searchView.setIconifiedByDefault(false)
+        val searchIcon:ImageView = searchView.findViewById(R.id.search_mag_icon);
+        searchIcon.visibility= View.GONE
+        searchIcon.setImageDrawable(null)
         val closeIcon:ImageView = searchView.findViewById(R.id.search_close_btn);
         closeIcon.setColorFilter(Color.BLACK)
         val theTextArea = searchView.findViewById<View>(R.id.search_src_text) as SearchAutoComplete
