@@ -160,7 +160,7 @@ class searchedItemActivity : AppCompatActivity() {
             val jsonObjectRequest=object : StringRequest(Method.POST,url,Response.Listener {
                 try{
                     if(it.equals("success")){
-                        Toast.makeText(this,"Question Saved to Database", Toast.LENGTH_LONG).show()
+                        Toast.makeText(this,"Your Answer will be available in 24 hours", Toast.LENGTH_LONG).show()
                         Log.d("repsonse...",it)
                     }
                     else{

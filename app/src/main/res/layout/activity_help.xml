@@ -36,6 +36,43 @@
                 android:layout_height="wrap_content"
                 android:text="@string/help" />
 
+            <TextView
+                android:layout_marginTop="10dp"
+                android:textColor="@color/purple_500"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/help1" />
+
+            <TextView
+                android:layout_marginTop="10dp"
+                android:textColor="@color/purple_500"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/help2" />
+
+            <TextView
+                android:layout_marginTop="10dp"
+                android:textColor="@color/purple_500"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/help3" />
+
+            <TextView
+                android:layout_marginTop="10dp"
+                android:textColor="@color/purple_500"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/help4" />
+
+            <TextView
+                android:layout_marginTop="30dp"
+                android:gravity="center"
+                android:textColor="@color/purple_700"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/developer" />
+
+
         </LinearLayout>
 
 
