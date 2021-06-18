@@ -10,11 +10,13 @@ import android.os.Bundle
 import android.util.Log
 import android.view.View
 import android.widget.ImageView
+import android.widget.LinearLayout
 import android.widget.TextView
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.widget.SearchView
 import androidx.appcompat.widget.SearchView.SearchAutoComplete
+import androidx.appcompat.widget.SearchView.VIEW_LOG_TAG
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.android.volley.Request
@@ -29,6 +31,7 @@ import pl.droidsonroids.gif.GifImageView
 
 class searchedItemActivity : AppCompatActivity() {
     lateinit var recyclerView: RecyclerView
+    lateinit var ll_center: LinearLayout
     lateinit var recyclerAdapter:SearchAdapter
     lateinit var layoutManager: RecyclerView.LayoutManager
     lateinit var textse:TextView
@@ -42,6 +45,7 @@ class searchedItemActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_searched_item)
 
+        ll_center = findViewById(R.id.ll_center)
         textse=findViewById(R.id.text_ser)
         noDataText=findViewById(R.id.noDataText)
         searchView=findViewById(R.id.search_bar)
@@ -99,6 +103,7 @@ class searchedItemActivity : AppCompatActivity() {
                             recyclerView.adapter=recyclerAdapter
                             textse.visibility=View.VISIBLE
                             gif.visibility = View.GONE
+                            ll_center.visibility = View.GONE
                             noDataText.visibility = View.GONE
 
                             //creating adapter object and setting it to recyclerview
@@ -121,9 +126,11 @@ class searchedItemActivity : AppCompatActivity() {
 
     private fun searchElement() {
 
-        searchView.queryHint="Search Question..."
-        val searchIcon:ImageView = searchView.findViewById(R.id.search_button);
-        searchIcon.setColorFilter(Color.BLACK)
+        searchView.queryHint="Search your question..."
+        searchView.setIconifiedByDefault(false)
+        val searchIcon:ImageView = searchView.findViewById(R.id.search_mag_icon);
+        searchIcon.visibility= View.GONE
+        searchIcon.setImageDrawable(null)
         val closeIcon:ImageView = searchView.findViewById(R.id.search_close_btn);
         closeIcon.setColorFilter(Color.BLACK)
         val theTextArea = searchView.findViewById<View>(R.id.search_src_text) as SearchAutoComplete

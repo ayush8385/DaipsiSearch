@@ -69,6 +69,7 @@ class MainActivity : AppCompatActivity() {
         courseArray.add(Subject("Johny", "JEE"))
         courseArray.add(Subject("July", "CA"))
         courseArray.add(Subject("justine", "CS"))
+        courseArray.add(Subject("Jonathan", "UPSC"))
         courseArray.add(Subject("Jack", "NEET"))
         courseArray.add(Subject("Johny", "JEE"))
         courseArray.add(Subject("July", "CA"))
@@ -77,6 +78,7 @@ class MainActivity : AppCompatActivity() {
         courseArray.add(Subject("Johny", "JEE"))
         courseArray.add(Subject("July", "CA"))
         courseArray.add(Subject("justine", "CS"))
+        courseArray.add(Subject("Jonathan", "UPSC"))
 
         search.setOnClickListener {
             val selectedId = radioGroup.checkedRadioButtonId
