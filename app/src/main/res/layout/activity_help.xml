@@ -4,79 +4,69 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical"
     android:background="@color/bg"
+    android:orientation="vertical"
     android:padding="8dp"
     tools:context=".Activities.HelpActivity">
 
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:layout_marginTop="20dp"
         android:text="Help"
-        android:textStyle="bold"
         android:textColor="@color/purple_700"
         android:textSize="25dp"
-        android:layout_gravity="center"
-        android:layout_marginTop="20dp"/>
+        android:textStyle="bold" />
+
     <androidx.core.widget.NestedScrollView
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        >
+        android:layout_height="match_parent">
 
         <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
             android:layout_marginTop="10dp"
             android:orientation="vertical"
-            android:padding="8dp"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content">
+            android:padding="8dp">
 
             <TextView
-                android:textColor="@color/purple_500"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="@string/help" />
+                android:text="@string/help"
+                android:textColor="@color/purple_500" />
 
             <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
                 android:layout_marginTop="10dp"
-                android:textColor="@color/purple_500"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="@string/help1" />
+                android:text="@string/help1"
+                android:textColor="@android:color/holo_red_dark" />
 
             <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
                 android:layout_marginTop="10dp"
-                android:textColor="@color/purple_500"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="@string/help2" />
+                android:text="@string/help2"
+                android:textColor="@color/purple_500" />
 
             <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
                 android:layout_marginTop="10dp"
-                android:textColor="@color/purple_500"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="@string/help3" />
+                android:text="@string/help3"
+                android:textColor="@android:color/holo_red_dark" />
 
             <TextView
-                android:layout_marginTop="10dp"
-                android:textColor="@color/purple_500"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="@string/help4" />
-
-            <TextView
                 android:layout_marginTop="30dp"
                 android:gravity="center"
-                android:textColor="@color/purple_700"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="@string/developer" />
-
+                android:text="@string/developer"
+                android:textColor="@color/purple_700" />
 
         </LinearLayout>
 
-
     </androidx.core.widget.NestedScrollView>
-
 
 </LinearLayout>

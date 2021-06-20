@@ -2,10 +2,9 @@
     <string name="app_name">DaipsiSearch</string>
     <string name="powered_by">Powered by Digital हैं</string>
     <string name="updated_earth">Updated Earth</string>
-    <string name="help">Step 1 : Choose your field which question you want to search</string>
-    <string name="help1">Step 2 : Click on the button "get your answer here"</string>
-    <string name="help2">Step 3 : Type questions in search bar by clicking on the "search icon"</string>
-    <string name="help3">Step 4 : Find the required question, if not found answer will be uploaded in 24 hrs</string>
-    <string name="help4">Step 5 : Follow our blogs by clicking on "daipsi blog" and share our application</string>
+    <string name="help">We have designed this application in very easygoing manner so that students can reach out to the results unambiguously. Answers are given in best order and adjusted with suitable examples also.</string>
+    <string name="help1">How to serf the application?</string>
+    <string name="help2">It is very simple. Just select your course in which you are interesting and type question in search bar and have the instant result.</string>
+    <string name="help3">Share your experience and give us feedback that will help us to improve application.</string>
     <string name="developer">Developed By Digital हैं</string>
 </resources>
