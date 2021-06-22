@@ -13,21 +13,22 @@
         android:roundIcon="@drawable/app_logo"
         android:supportsRtl="true"
         android:configChanges="orientation"
-        android:screenOrientation="portrait"
+
         android:theme="@style/Theme.DaipsiSearch">
-        <activity android:name=".Activities.HelpActivity"
+        <activity
+            android:name=".Activities.HelpActivity"
             android:configChanges="keyboard|keyboardHidden|orientation|screenLayout|uiMode|screenSize|smallestScreenSize"
-            android:screenOrientation="portrait"
-            android:theme="@style/Theme.MaterialComponents.NoActionBar"></activity>
+
+            android:theme="@style/Theme.MaterialComponents.NoActionBar" />
         <activity
             android:name=".Activities.WebViewActivity"
             android:configChanges="keyboard|keyboardHidden|orientation|screenLayout|uiMode|screenSize|smallestScreenSize"
-            android:screenOrientation="portrait"
+
             android:theme="@style/Theme.MaterialComponents.NoActionBar" />
         <activity
             android:name=".Activities.AnswerView"
             android:configChanges="keyboard|keyboardHidden|orientation|screenLayout|uiMode|screenSize|smallestScreenSize"
-            android:screenOrientation="portrait" />
+            />
         <activity
             android:name=".Activities.searchedItemActivity"
             android:configChanges="keyboard|keyboardHidden|orientation|screenLayout|uiMode|screenSize|smallestScreenSize" />
