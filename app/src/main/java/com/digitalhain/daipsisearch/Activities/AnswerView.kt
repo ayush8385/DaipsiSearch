@@ -22,8 +22,6 @@ class AnswerView : AppCompatActivity() {
     }
 
     override fun onBackPressed() {
-        startActivity(Intent(this,searchedItemActivity::class.java))
-        finishAffinity()
         super.onBackPressed()
     }
 }

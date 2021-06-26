@@ -11,24 +11,35 @@
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Type in Search..."
+        android:text="Now you can search"
         android:layout_centerInParent="true"
         android:textSize="24sp"
         android:visibility="gone"
         android:textColor="@color/white"
         android:id="@+id/text_ser"/>
 
-    <pl.droidsonroids.gif.GifImageView
-        android:id="@+id/gif"
-        android:layout_width="80dp"
-        android:layout_height="80dp"
+    <LinearLayout
+        android:gravity="center"
+        android:id="@+id/ll_center"
         android:layout_centerInParent="true"
-        android:src="@drawable/nodatafound"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+        <pl.droidsonroids.gif.GifImageView
+            android:id="@+id/gif"
+            android:layout_width="80dp"
+            android:layout_height="80dp"
+            android:src="@drawable/nodatafound"
+            />
+        <TextView
+            android:text="Please wait data is loading..."
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"/>
+    </LinearLayout>
 
-        />
 
     <TextView
-        android:layout_below="@+id/gif"
+        android:layout_below="@+id/ll_center"
         android:id="@+id/noDataText"
         android:layout_marginTop="10dp"
         android:layout_width="wrap_content"
@@ -45,9 +56,13 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:id="@+id/search_bar"
+        android:focusable="true"
+        android:focusedByDefault="true"
+        android:focusableInTouchMode="true"
+        android:touchscreenBlocksFocus="true"
         android:background="@drawable/custam_search_bg_new"
         android:theme="@style/Widget.AppCompat.SearchView"
-        android:textSize="13sp" />
+        android:textSize="13sp"/>
 
     <androidx.recyclerview.widget.RecyclerView
         tools:listitem="@layout/item_res_search"

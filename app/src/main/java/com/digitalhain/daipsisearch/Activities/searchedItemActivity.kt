@@ -10,6 +10,7 @@ import android.os.Bundle
 import android.util.Log
 import android.view.View
 import android.widget.ImageView
+import android.widget.LinearLayout
 import android.widget.TextView
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
@@ -30,6 +31,7 @@ import pl.droidsonroids.gif.GifImageView
 
 class searchedItemActivity : AppCompatActivity() {
     lateinit var recyclerView: RecyclerView
+    lateinit var ll_center: LinearLayout
     lateinit var recyclerAdapter:SearchAdapter
     lateinit var layoutManager: RecyclerView.LayoutManager
     lateinit var textse:TextView
@@ -44,6 +46,7 @@ class searchedItemActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_searched_item)
 
+        ll_center = findViewById(R.id.ll_center)
         textse=findViewById(R.id.text_ser)
         noDataText=findViewById(R.id.noDataText)
         searchView=findViewById(R.id.search_bar)
@@ -100,6 +103,7 @@ class searchedItemActivity : AppCompatActivity() {
                             recyclerView.adapter=recyclerAdapter
                             textse.visibility=View.VISIBLE
                             gif.visibility = View.GONE
+                            ll_center.visibility = View.GONE
                             noDataText.visibility = View.GONE
 
                             //creating adapter object and setting it to recyclerview
@@ -163,7 +167,7 @@ class searchedItemActivity : AppCompatActivity() {
             val jsonObjectRequest=object : StringRequest(Method.POST,url,Response.Listener {
                 try{
                     if(it.equals("success")){
-                        Toast.makeText(this,"Question Saved to Database", Toast.LENGTH_LONG).show()
+                        Toast.makeText(this,"Your Answer will be available in 24 hours", Toast.LENGTH_LONG).show()
                         Log.d("repsonse...",it)
                     }
                     else{
