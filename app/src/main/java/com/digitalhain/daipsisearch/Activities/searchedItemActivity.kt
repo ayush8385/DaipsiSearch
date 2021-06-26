@@ -39,6 +39,7 @@ class searchedItemActivity : AppCompatActivity() {
     lateinit var gif: GifImageView
     var subjectArray = arrayListOf<com.digitalhain.daipsisearch.Activities.Subject>()
     val filteredlist:ArrayList<com.digitalhain.daipsisearch.Activities.Subject> = ArrayList()
+    var str=""
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_searched_item)
@@ -49,7 +50,6 @@ class searchedItemActivity : AppCompatActivity() {
         gif=findViewById(R.id.gif)
 
         val sub=intent.getStringExtra("subject")
-        var str=""
 
         if(sub=="Engineering"){
             str="engineering"
@@ -179,6 +179,7 @@ class searchedItemActivity : AppCompatActivity() {
                 override fun getParams(): MutableMap<String, String> {
                     val params=HashMap<String,String>()
                     params.put("question",text)
+                    params.put("course",str)
                     return params
                 }
             }

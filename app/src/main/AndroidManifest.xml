@@ -30,6 +30,7 @@
             android:screenOrientation="portrait" />
         <activity
             android:name=".Activities.searchedItemActivity"
+            android:theme="@style/Theme.MaterialComponents.NoActionBar"
             android:configChanges="keyboard|keyboardHidden|orientation|screenLayout|uiMode|screenSize|smallestScreenSize" />
         <activity
             android:name=".Activities.splashActivity"
