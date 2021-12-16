@@ -18,7 +18,7 @@ import com.digitalhain.daipsisearch.R;
 public class WebViewActivity extends AppCompatActivity {
     WebView webView;
     ProgressBar progrees;
-    String URL = "https://daipsi.com/blogs/";
+    String URL = "https://daipsi.com/blogs";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -28,7 +28,7 @@ public class WebViewActivity extends AppCompatActivity {
         progrees.setVisibility(View.GONE);
         WebView myWebView = (WebView) findViewById(R.id.webView);
 
-        myWebView.loadUrl("https://daipsi.com/blogs/");
+        myWebView.loadUrl("https://daipsi.com/blogs");
 
     }
 

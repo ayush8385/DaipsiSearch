@@ -13,18 +13,21 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:orientation="vertical"
-        android:padding="8dp">
+        android:id="@+id/parent">
         <ImageView
             android:layout_width="match_parent"
             android:layout_height="100sp"
             android:scaleType="fitXY"
-            android:src="@drawable/coursedummy"/>
+            android:id="@+id/course_img"
+            android:src="@drawable/neet"/>
 
         <TextView
             android:layout_marginTop="5sp"
             android:layout_marginBottom="5sp"
             android:textSize="14sp"
             android:textStyle="bold"
+            android:paddingLeft="10dp"
+            android:paddingTop="4dp"
             android:text="Course Name"
             android:textColor="@color/purple_700"
             android:id="@+id/name"
@@ -35,6 +38,7 @@
             android:layout_marginBottom="5sp"
             android:text="course teacher"
             android:textSize="10sp"
+            android:paddingLeft="10dp"
             android:textColor="@color/purple_500"
             android:id="@+id/teacher"
             android:layout_width="match_parent"
@@ -43,6 +47,7 @@
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:paddingLeft="10dp"
             android:orientation="horizontal">
             <ImageView
                 android:src="@drawable/ic_star_fill_full"

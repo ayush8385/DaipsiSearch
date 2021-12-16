@@ -29,9 +29,9 @@
             android:id="@+id/gif"
             android:layout_width="80dp"
             android:layout_height="80dp"
-            android:src="@drawable/nodatafound"
             />
         <TextView
+            android:id="@+id/wait_text"
             android:text="Please wait data is loading..."
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"/>
