@@ -8,6 +8,39 @@
     android:padding="8dp"
     tools:context=".Activities.searchedItemActivity">
 
+
+<!--    <com.google.android.material.floatingactionbutton.ExtendedFloatingActionButton-->
+<!--        android:layout_width="wrap_content"-->
+<!--        android:layout_height="wrap_content"-->
+<!--        android:layout_alignParentRight="true"-->
+<!--        android:layout_alignParentBottom="true"-->
+<!--        android:layout_margin="20dp"-->
+<!--        android:text="Ask Question"-->
+<!--        android:backgroundTint="@color/purple_200"-->
+<!--        app:icon="@drawable/ic_baseline_add_24"/>-->
+
+
+
+
+
+    <!--Floating action button for add alarm-->
+    <!--Make sure that you are constraining this
+        button to the parent button-->
+    <!--Make sure to add backgroundTint attribute to match
+         the entire application color-->
+    <!--because after changing the base application theme the color
+         of the FAB is set Blue as default-->
+
+
+    <!--Floating action button for add person-->
+    <!--Make sure that you are constraining this button
+        to the add Alarm FAB button-->
+    <!--Make sure to add backgroundTint attribute to match
+         the entire application color-->
+    <!--because after changing the base application theme
+         the color of the FAB is set Blue as default-->
+
+
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -72,5 +105,88 @@
         android:id="@+id/recyclermain"
         />
 
+
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentRight="true"
+        android:orientation="vertical"
+        android:paddingRight="16dp"
+        android:layout_alignParentBottom="true">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:gravity="end"
+            android:orientation="horizontal">
+
+            <TextView
+                android:id="@+id/add_pdftxt"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textSize="19sp"
+                android:layout_marginRight="10dp"
+                android:layout_gravity="center"
+                android:layout_marginBottom="10dp"
+                android:textColor="@color/black"
+                android:text="Upload Pdf"/>
+            <com.google.android.material.floatingactionbutton.FloatingActionButton
+                android:id="@+id/add_pdf"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="24dp"
+                app:borderWidth="0dp"
+                android:backgroundTint="@color/purple_200"
+
+                app:srcCompat="@drawable/ic_baseline_picture_as_pdf_24" />
+
+            <!--Action name text for the add person button-->
+            <!--Make sure that you are constraining this Text
+                 to the add Person FAB button-->
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:gravity="end"
+            android:orientation="horizontal">
+            <TextView
+                android:id="@+id/add_imgtxt"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Upload Image"
+                android:textSize="19sp"
+                android:layout_gravity="center"
+                android:layout_marginBottom="10dp"
+                android:layout_marginRight="10dp"
+                android:textColor="@color/black"
+                />
+            <com.google.android.material.floatingactionbutton.FloatingActionButton
+                android:id="@+id/add_img"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="24dp"
+                android:backgroundTint="@color/purple_200"
+                app:borderWidth="0dp"
+                app:srcCompat="@drawable/ic_baseline_insert_photo_24" />
+
+            <!--Action name text for the add alarm button-->
+            <!--Make sure that you are constraining this
+                Text to the add Alarm FAB button-->
+
+        </LinearLayout>
+
+        <com.google.android.material.floatingactionbutton.ExtendedFloatingActionButton
+            android:id="@+id/ask_que"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="end"
+            android:layout_marginBottom="16dp"
+            android:backgroundTint="@color/purple_200"
+            android:text="Ask Question"
+            app:icon="@drawable/ic_baseline_add_24"/>
+
+    </LinearLayout>
 
 </RelativeLayout>

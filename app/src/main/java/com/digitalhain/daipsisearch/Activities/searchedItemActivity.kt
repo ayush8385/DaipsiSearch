@@ -2,8 +2,8 @@ package com.digitalhain.daipsisearch.Activities
 
 //import pl.droidsonroids.gif.GifImageView
 
-import android.app.SearchManager
-import android.content.Context
+import android.Manifest
+import android.R.attr
 import android.content.Intent
 import android.graphics.Color
 import android.os.Bundle
@@ -29,7 +29,35 @@ import com.android.volley.toolbox.Volley
 import com.digitalhain.daipsisearch.Activities.Room.QuestionEntity
 import com.digitalhain.daipsisearch.Activities.Room.QuestionViewModel
 import com.digitalhain.daipsisearch.Activities.utils.Preferences
+import com.google.android.material.floatingactionbutton.ExtendedFloatingActionButton
+import com.google.android.material.floatingactionbutton.FloatingActionButton
 import com.hellohasan.android_firebase_notification.notification.Configuration
+import android.R.attr.bitmap
+import android.net.Uri
+
+import android.provider.MediaStore
+import android.app.ProgressDialog
+
+import android.os.AsyncTask
+
+import android.graphics.Bitmap
+import android.util.Base64
+import java.io.*
+import java.lang.StringBuilder
+import java.net.HttpURLConnection
+import java.net.URL
+import java.net.URLEncoder
+import javax.net.ssl.HttpsURLConnection
+import androidx.core.app.ActivityCompat.startActivityForResult
+import android.content.pm.PackageManager
+
+import androidx.core.app.ActivityCompat
+import net.gotev.uploadservice.data.UploadNotificationConfig
+import net.gotev.uploadservice.protocols.multipart.MultipartUploadRequest
+import java.lang.reflect.Method
+import java.util.*
+import kotlin.collections.ArrayList
+import kotlin.collections.HashMap
 
 
 class searchedItemActivity : AppCompatActivity() {
@@ -47,6 +75,30 @@ class searchedItemActivity : AppCompatActivity() {
     lateinit var subjectArray:ArrayList<Subject>
     lateinit var sharedPreferences:Preferences
 
+    lateinit var progressDialog: ProgressDialog
+
+    lateinit var GetImageNameEditText: String
+
+    var ImageName = "image_name"
+
+    var ImagePath = "image_path"
+
+    lateinit var bitmap: Bitmap
+    lateinit var uri: Uri
+    var PdfNameHolder: String? = null
+
+    var PdfID:String? = null
+
+
+    lateinit var askQuestion:ExtendedFloatingActionButton
+    lateinit var addImg:FloatingActionButton
+    lateinit var addPdf:FloatingActionButton
+
+    lateinit var imgtxt:TextView
+    lateinit var pdftext:TextView
+
+    var fabsvisible:Boolean=false
+
     val handler = Handler()
     val filteredlist:ArrayList<com.digitalhain.daipsisearch.Activities.Subject> = ArrayList()
     var str=""
@@ -60,6 +112,66 @@ class searchedItemActivity : AppCompatActivity() {
         searchView=findViewById(R.id.search_bar)
         gif=findViewById(R.id.gif)
         wait=findViewById(R.id.wait_text)
+
+        askQuestion=findViewById(R.id.ask_que)
+        addImg=findViewById(R.id.add_img)
+        addPdf=findViewById(R.id.add_pdf)
+
+        imgtxt=findViewById(R.id.add_imgtxt)
+        pdftext=findViewById(R.id.add_pdftxt)
+
+        addImg.visibility=View.GONE
+        addPdf.visibility=View.GONE
+        imgtxt.visibility=View.GONE
+        pdftext.visibility=View.GONE
+
+        fabsvisible=false
+
+        askQuestion.shrink()
+
+        askQuestion.setOnClickListener {
+            if(!fabsvisible){
+                addImg.visibility=View.VISIBLE
+                addPdf.visibility=View.VISIBLE
+                imgtxt.visibility=View.VISIBLE
+                pdftext.visibility=View.VISIBLE
+
+                askQuestion.extend()
+
+                fabsvisible=true
+            }
+            else{
+                addImg.visibility=View.GONE
+                addPdf.visibility=View.GONE
+                imgtxt.visibility=View.GONE
+                pdftext.visibility=View.GONE
+
+                fabsvisible=false
+
+                askQuestion.shrink()
+            }
+        }
+        addPdf.setOnClickListener {
+            val intent = Intent()
+
+            intent.type = "application/pdf"
+
+            intent.action = Intent.ACTION_GET_CONTENT
+
+            startActivityForResult(Intent.createChooser(intent, "Select Pdf"), 2)
+
+        }
+
+        addImg.setOnClickListener {
+            val intent = Intent()
+
+            intent.type = "image/*"
+
+            intent.action = Intent.ACTION_GET_CONTENT
+
+            startActivityForResult(Intent.createChooser(intent, "Select Image From Gallery"), 1)
+
+        }
 
         val sub=intent.getStringExtra("subject")
 
@@ -98,6 +210,28 @@ class searchedItemActivity : AppCompatActivity() {
 
         fetchQuestion("","")
 
+    }
+
+    override fun onActivityResult(RC: Int, RQC: Int, I: Intent?) {
+        super.onActivityResult(RC, RQC, I)
+        if (RC == 1 && RQC == RESULT_OK && I != null && I.data != null) {
+            uri = I.data!!
+            try {
+                bitmap = MediaStore.Images.Media.getBitmap(contentResolver, uri)
+                ImageUploadToServerFunction()
+            } catch (e: IOException) {
+                e.printStackTrace()
+            }
+        }
+
+        if (RC==2 && RQC == RESULT_OK && I != null && I.getData() != null) {
+
+            uri = I.getData()!!
+//            AllowRunTimePermission()
+            PdfUploadFunction()
+
+            //SelectButton.setText("PDF is Selected");
+        }
     }
 
     private fun searchElement() {
@@ -255,6 +389,171 @@ class searchedItemActivity : AppCompatActivity() {
         startActivity(Intent(this,MainActivity::class.java))
         finishAffinity()
         super.onBackPressed()
+    }
+
+
+    fun ImageUploadToServerFunction() {
+        val byteArrayOutputStreamObject: ByteArrayOutputStream
+        byteArrayOutputStreamObject = ByteArrayOutputStream()
+        bitmap.compress(Bitmap.CompressFormat.JPEG, 100, byteArrayOutputStreamObject)
+        val byteArrayVar: ByteArray = byteArrayOutputStreamObject.toByteArray()
+        val ConvertImage: String = Base64.encodeToString(byteArrayVar, Base64.DEFAULT)
+
+
+        class AsyncTaskUploadClass :
+            AsyncTask<Void?, Void?, String?>() {
+            override fun onPreExecute() {
+                super.onPreExecute()
+                progressDialog = ProgressDialog.show(
+                    this@searchedItemActivity,
+                    "Image is Uploading",
+                    "Please Wait",
+                    false,
+                    false
+                )
+            }
+
+            override fun onPostExecute(string1: String?) {
+                super.onPostExecute(string1)
+
+                // Dismiss the progress dialog after done uploading.
+                progressDialog.dismiss()
+
+                // Printing uploading success message coming from server on android app.
+                Toast.makeText(this@searchedItemActivity, string1, Toast.LENGTH_LONG).show()
+
+                // Setting image as transparent after done uploading.
+            }
+
+
+            override fun doInBackground(vararg params: Void?): String? {
+                val url="https://daipsi.com/Android_App_Daipsi/uploadimg.php"
+                val imageProcessClass = ImageProcessClass()
+                val HashMapParams =
+                    HashMap<String, String>()
+                HashMapParams[ImageName] = "GetImageNameEditText"
+                HashMapParams[ImagePath] = ConvertImage
+                return imageProcessClass.ImageHttpRequest(url, HashMapParams)
+            }
+        }
+
+        val AsyncTaskUploadClassOBJ = AsyncTaskUploadClass()
+        AsyncTaskUploadClassOBJ.execute()
+    }
+
+    class ImageProcessClass {
+        fun ImageHttpRequest(requestURL: String?, PData: HashMap<String, String>): String {
+            var stringBuilder = StringBuilder()
+            try {
+                val url: URL
+                val httpURLConnectionObject: HttpURLConnection
+                val OutPutStream: OutputStream
+                val bufferedWriterObject: BufferedWriter
+                val bufferedReaderObject: BufferedReader
+                val RC: Int
+                url = URL(requestURL)
+                httpURLConnectionObject = url.openConnection() as HttpURLConnection
+                httpURLConnectionObject.setReadTimeout(19000)
+                httpURLConnectionObject.setConnectTimeout(19000)
+                httpURLConnectionObject.setRequestMethod("POST")
+                httpURLConnectionObject.setDoInput(true)
+                httpURLConnectionObject.setDoOutput(true)
+                OutPutStream = httpURLConnectionObject.getOutputStream()
+                bufferedWriterObject = BufferedWriter(
+                    OutputStreamWriter(OutPutStream, "UTF-8")
+                )
+                bufferedWriterObject.write(bufferedWriterDataFN(PData))
+                bufferedWriterObject.flush()
+                bufferedWriterObject.close()
+                OutPutStream.close()
+                RC = httpURLConnectionObject.getResponseCode()
+                if (RC == HttpsURLConnection.HTTP_OK) {
+                    bufferedReaderObject =
+                        BufferedReader(InputStreamReader(httpURLConnectionObject.getInputStream()))
+                    stringBuilder = StringBuilder()
+                    var RC2: String?
+                    while (bufferedReaderObject.readLine().also { RC2 = it } != null) {
+                        stringBuilder.append(RC2)
+                    }
+                }
+            } catch (e: java.lang.Exception) {
+                e.printStackTrace()
+            }
+            return stringBuilder.toString()
+        }
+
+        @Throws(UnsupportedEncodingException::class)
+        private fun bufferedWriterDataFN(HashMapParams: HashMap<String, String>): String {
+            var check=true
+            val stringBuilderObject: StringBuilder
+            stringBuilderObject = StringBuilder()
+            for ((key, value) in HashMapParams.entries) {
+                if (check) check = false else stringBuilderObject.append("&")
+                stringBuilderObject.append(URLEncoder.encode(key, "UTF-8"))
+                stringBuilderObject.append("=")
+                stringBuilderObject.append(URLEncoder.encode(value, "UTF-8"))
+            }
+            return stringBuilderObject.toString()
+        }
+    }
+
+
+    fun PdfUploadFunction() {
+       // PdfNameHolder = PdfNameEditText.getText().toString().trim()
+        val PdfPathHolder = FilePath.getPath(this,uri)
+        if (PdfPathHolder == null) {
+            Toast.makeText(
+                this,
+                "Please move your PDF file to internal storage & try again.",
+                Toast.LENGTH_LONG
+            ).show()
+        } else {
+            try {
+                val url="https://daipsi.com/Android_App_Daipsi/uploadpdf.php"
+                PdfID = UUID.randomUUID().toString()
+
+                MultipartUploadRequest(this, url)
+                    .addFileToUpload(PdfPathHolder, "pdf")
+                    .addParameter("name", "PdfNameHolder")
+                   // .setNotificationConfig(UploadNotificationConfig())
+                    .setMaxRetries(5)
+                    .startUpload()
+            } catch (exception: java.lang.Exception) {
+                Toast.makeText(this, exception.message, Toast.LENGTH_SHORT).show()
+            }
+        }
+    }
+
+
+    fun AllowRunTimePermission() {
+        if (ActivityCompat.shouldShowRequestPermissionRationale(
+                this,
+                Manifest.permission.READ_EXTERNAL_STORAGE
+            )
+        ) {
+            PdfUploadFunction()
+        } else {
+            ActivityCompat.requestPermissions(
+                this,
+                arrayOf(Manifest.permission.READ_EXTERNAL_STORAGE),
+                1
+            )
+        }
+    }
+
+    override fun onRequestPermissionsResult(
+        requestCode: Int,
+        permissions: Array<out String>,
+        grantResults: IntArray
+    ) {
+        super.onRequestPermissionsResult(requestCode, permissions, grantResults)
+        when (requestCode) {
+            1 -> if (grantResults.size > 0 && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
+                Toast.makeText(this, "Permission Granted", Toast.LENGTH_LONG).show()
+            } else {
+                Toast.makeText(this, "Permission Canceled", Toast.LENGTH_LONG).show()
+            }
+        }
     }
 
 

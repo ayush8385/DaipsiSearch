@@ -9,33 +9,40 @@ import androidx.recyclerview.widget.RecyclerView
 import com.digitalhain.daipsisearch.BuildConfig
 import com.digitalhain.daipsisearch.R
 import android.content.BroadcastReceiver
-import android.content.ContentValues.TAG
 import android.content.Context
 import android.widget.Toast
 
-import android.content.IntentFilter
 import android.net.Uri
 
-import android.text.TextUtils
-
 import android.util.Log
-import androidx.lifecycle.Observer
-import androidx.localbroadcastmanager.content.LocalBroadcastManager
 import com.android.volley.Response
 import com.android.volley.toolbox.StringRequest
 import com.android.volley.toolbox.Volley
 import com.digitalhain.daipsisearch.Activities.Room.QuestionEntity
 import com.digitalhain.daipsisearch.Activities.Room.QuestionViewModel
-import com.digitalhain.daipsisearch.Activities.notification.MyFirebaseMessagingService
 import com.digitalhain.daipsisearch.Activities.utils.Preferences
-import com.google.android.gms.tasks.OnCompleteListener
-import com.google.android.play.core.appupdate.AppUpdateManager
-import com.google.android.play.core.appupdate.AppUpdateManagerFactory
-import com.google.android.play.core.install.model.AppUpdateType
-import com.google.android.play.core.install.model.UpdateAvailability
-import com.google.firebase.analytics.FirebaseAnalytics
 import com.google.firebase.messaging.FirebaseMessaging
 import com.hellohasan.android_firebase_notification.notification.Configuration
+import android.app.AlarmManager
+import android.app.NotificationChannel
+import android.app.NotificationManager
+
+import android.app.PendingIntent
+import android.os.Build
+import androidx.annotation.RequiresApi
+import java.util.*
+import kotlin.collections.HashMap
+import android.content.pm.PackageManager
+
+import android.content.pm.PackageInfo
+import android.util.Base64.DEFAULT
+import android.util.Base64.encodeToString
+import com.facebook.FacebookSdk
+import com.facebook.LoggingBehavior
+import java.lang.reflect.Method
+import java.security.MessageDigest
+import java.security.NoSuchAlgorithmException
+
 
 class MainActivity : AppCompatActivity() {
     lateinit var radioGroup: RadioGroup
@@ -49,6 +56,7 @@ class MainActivity : AppCompatActivity() {
     var courseArray = arrayListOf<Courses>()
     lateinit var sharedPrefManager:Preferences
     private var mRegistrationBroadcastReceiver: BroadcastReceiver? = null
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
@@ -59,6 +67,43 @@ class MainActivity : AppCompatActivity() {
         help = findViewById(R.id.help)
 
         sharedPrefManager = Preferences.getInstance(applicationContext)!!
+
+        try {
+            val info = packageManager.getPackageInfo(
+                "com.digitalhain.daipsisearch",
+                PackageManager.GET_SIGNATURES
+            )
+            for (signature in info.signatures) {
+                val md: MessageDigest = MessageDigest.getInstance("SHA")
+                md.update(signature.toByteArray())
+                Log.e("KeyHash:",encodeToString(md.digest(), DEFAULT))
+            }
+        } catch (e: PackageManager.NameNotFoundException) {
+        } catch (e: NoSuchAlgorithmException) {
+        }
+
+        if(Build.VERSION.SDK_INT>=Build.VERSION_CODES.O){
+            createNotificationChannel()
+        }
+
+        val intent = Intent(applicationContext, AlarmReceiver::class.java)
+
+
+        val pendingIntent = PendingIntent.getBroadcast(
+            applicationContext,
+            1,
+            intent,
+            PendingIntent.FLAG_IMMUTABLE or PendingIntent.FLAG_UPDATE_CURRENT
+        )
+
+        val alarmManager = getSystemService(Context.ALARM_SERVICE) as AlarmManager
+        val time = System.currentTimeMillis()
+        alarmManager.setRepeating(
+            AlarmManager.RTC_WAKEUP,
+            System.currentTimeMillis(),
+            (220 * 60 * 1000).toLong(),
+            pendingIntent
+        )
 
      //   if(getSharedPreferences(Configuration.SHARED_PREF, MODE_PRIVATE).getString("fcm_token","")==""){
             FirebaseMessaging.getInstance().token.addOnCompleteListener {
@@ -80,48 +125,6 @@ class MainActivity : AppCompatActivity() {
             startActivity(intent)
 
         }
-
-
-
-//        FirebaseMessaging.getInstance().token.addOnCompleteListener(OnCompleteListener { task ->
-//            if (!task.isSuccessful) {
-//                Log.w(TAG, "Fetching FCM registration token failed", task.exception)
-//                return@OnCompleteListener
-//            }
-//
-//            // Get new FCM registration token
-//            val token = task.result
-//
-//            // Log and toast
-////            val msg = getString(R.string.msg_token_fmt, token)
-//            Log.d(TAG, token.toString())
-//            Toast.makeText(baseContext, token.toString(), Toast.LENGTH_SHORT).show()
-//        })
-////
-//        mRegistrationBroadcastReceiver = object : BroadcastReceiver() {
-//            override fun onReceive(context: Context, intent: Intent) {
-//
-//                // checking for type intent filter
-//                if (intent.action == com.digitalhain.daipsisearch.Activities.Config.TOPI) {
-//                    // gcm successfully registered
-//                    // now subscribe to `global` topic to receive app wide notifications
-//                    FirebaseMessaging.getInstance().subscribeToTopic(Config.TOPIC_GLOBAL)
-//                    displayFirebaseRegId()
-//                } else if (intent.action == Config.PUSH_NOTIFICATION) {
-//                    // new push notification is received
-//                    val message = intent.getStringExtra("message")
-//                    Toast.makeText(
-//                        applicationContext,
-//                        "Push notification: $message",
-//                        Toast.LENGTH_LONG
-//                    ).show()
-//
-//                }
-//            }
-//        }
-
-  //      displayFirebaseRegId()
-
 
         share.setOnClickListener {
             try {
@@ -152,7 +155,7 @@ class MainActivity : AppCompatActivity() {
         recyclerView = findViewById(R.id.recyclercard)
         layoutManager = LinearLayoutManager(this, LinearLayoutManager.HORIZONTAL, false)
 
-        courseArray.add(Courses("Gauri Chandrabhatla/Pallavi Singhla", "NEET","https://daipsi.com/courses/neet.php",R.drawable.neet))
+        courseArray.add(Courses("Gauri Chandrabhatla/Pallavi Bansal", "NEET","https://daipsi.com/courses/neet.php",R.drawable.neet))
         courseArray.add(Courses("Prof. Yogendra Kumar", "JEE","https://daipsi.com/courses/jee.php",R.drawable.jee))
         courseArray.add(Courses("Prof. Prem Gurjar","UPSC","https://daipsi.com/courses/upsc.php",R.drawable.upsc))
         courseArray.add(Courses("Charted Sandeep Sharma", "CA","https://daipsi.com/courses/ca.php",R.drawable.ca))
@@ -178,50 +181,84 @@ class MainActivity : AppCompatActivity() {
 
     }
 
+
+    private fun createNotificationChannel()
+    {
+        val name = "Notif Channel"
+        val desc = "A Description of the Channel"
+        val importance = NotificationManager.IMPORTANCE_DEFAULT
+        val channel:NotificationChannel = NotificationChannel(R.string.default_notification_channel_id.toString(), name, importance)
+        channel.description = desc
+        val notificationManager = getSystemService(NOTIFICATION_SERVICE) as NotificationManager
+        notificationManager.createNotificationChannel(channel)
+    }
+
     fun updateToken(token:String){
         val allQuestion = arrayListOf<QuestionEntity>()
 
-        QuestionViewModel(application).allQuestions.observe(this, Observer { list->
-            list?.let {
-                allQuestion.clear()
-                allQuestion.addAll(list)
+        QuestionViewModel(application).allQuestions.observe(this,
+            androidx.lifecycle.Observer { list ->
+                list?.let {
+                    allQuestion.clear()
+                    allQuestion.addAll(list)
 
-                for(quest in allQuestion){
+                    for (quest in allQuestion) {
 
-                    val url="https://daipsi.com/Android_App_Daipsi/updatetoken.php"
+                        val url = "https://daipsi.com/Android_App_Daipsi/updatetoken.php"
 
-                    val queue= Volley.newRequestQueue(this)
-                    val jsonObjectRequest=object : StringRequest(Method.POST,url, Response.Listener {
-                        try{
-                            if(it.equals("success")){
+                        val queue = Volley.newRequestQueue(this)
+                        val jsonObjectRequest =
+                            object : StringRequest(Method.POST, url, Response.Listener {
+                                try {
+                                    if (it.equals("success")) {
 
-                                Toast.makeText(this,"Token Updated", Toast.LENGTH_LONG).show()
-                                Log.e("repsonse...",it)
+                                        Toast.makeText(this, "Token Updated", Toast.LENGTH_LONG)
+                                            .show()
+                                        Log.e("repsonse...", it)
+                                    }
+                                } catch (e: Exception) {
+                                    Toast.makeText(
+                                        applicationContext,
+                                        "Error Occurred",
+                                        Toast.LENGTH_SHORT
+                                    ).show()
+                                }
+                            }, Response.ErrorListener {
+                                Toast.makeText(this, "Volley error occurred!!!", Toast.LENGTH_SHORT)
+                                    .show()
+                            }) {
+                                override fun getParams(): MutableMap<String, String> {
+                                    val params = HashMap<String, String>()
+                                    params.put("question", quest.question.toString())
+                                    params.put("course", quest.course + "_queries")
+                                    params.put("token", token)
+                                    return params
+                                }
                             }
-                        }
-                        catch (e:Exception){
-                            Toast.makeText(applicationContext,"Error Occurred",Toast.LENGTH_SHORT).show()
-                        }
-                    },Response.ErrorListener {
-                        Toast.makeText(this, "Volley error occurred!!!", Toast.LENGTH_SHORT).show()
-                    }){
-                        override fun getParams(): MutableMap<String, String> {
-                            val params=HashMap<String,String>()
-                            params.put("question", quest.question.toString())
-                            params.put("course", quest.course+"_queries")
-                            params.put("token",token)
-                            return params
-                        }
+                        queue.add(jsonObjectRequest)
                     }
-                    queue.add(jsonObjectRequest)
                 }
-            }
-        })
+            })
 
 
 
 
     }
+
+//    override fun onDestroy() {
+//        super.onDestroy()
+//        val notificationIntent = Intent(this, RandomNotification::class.java)
+//        val contentIntent = PendingIntent.getService(
+//            this, 0, notificationIntent,
+//            PendingIntent.FLAG_CANCEL_CURRENT
+//        )
+//        val am = getSystemService(ALARM_SERVICE) as AlarmManager
+//        am.cancel(contentIntent)
+//        am.setRepeating(
+//            AlarmManager.ELAPSED_REALTIME_WAKEUP,
+//            System.currentTimeMillis(), 10000, contentIntent
+//        )
+//    }
 
 //
 //    private fun checkUpdate() {

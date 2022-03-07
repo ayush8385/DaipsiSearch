@@ -1,5 +1,6 @@
 package com.digitalhain.daipsisearch.Activities
 
+import android.app.NotificationManager
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
@@ -25,6 +26,8 @@ class AnswerView : AppCompatActivity() {
         question.text = intent.getStringExtra("Ques")
         answer.text = intent.getStringExtra("Ans")
 
+        val notificationManager = this.getSystemService(NOTIFICATION_SERVICE) as NotificationManager
+        notificationManager.cancelAll()
 
         //sharedPreferences.removeQues(applicationContext,Subject(supportActionBar!!.title.toString(), question.text.toString()))
 

@@ -100,7 +100,7 @@ class NotificationUtils(private val mContext: Context) {
         inboxStyle.addLine(message)
 
         val notification: Notification
-        notification = mBuilder.setSmallIcon(icon).setTicker(title).setWhen(0)
+        notification = mBuilder.setSmallIcon(icon).setTicker(title).setWhen(System.currentTimeMillis())
             .setAutoCancel(true)
             .setContentTitle(title)
             .setContentIntent(resultPendingIntent)

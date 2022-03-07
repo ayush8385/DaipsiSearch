@@ -88,7 +88,7 @@ class MyFirebaseMessagingService : FirebaseMessagingService() {
     /**
      * Showing notification with text only
      */
-    private fun showNotificationMessage(
+    fun showNotificationMessage(
         context: Context,
         title: String,
         message: String,
